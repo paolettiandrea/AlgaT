@@ -13,7 +13,5 @@ public class FXMLController {
         String javafxVersion = System.getProperty("javafx.version");
 
         label.setText("Hello, JavaFX " + javafxVersion + "\nRunning on Java " + javaVersion + ".");
-
-        System.out.println(System.getProperties());
     }
 }
