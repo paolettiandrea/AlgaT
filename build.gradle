@@ -13,7 +13,7 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = "$moduleName/algat.MainApp"
+mainClassName = "$moduleName/algat.App"
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -25,3 +25,10 @@ jlink {
         name = 'AlgaT'
     }
 }
+
+task instrun(type: Exec) {
+    dependsOn installDist
+    workingDir "$buildDir/install/$project.name/bin"
+    commandLine 'sh', '-c', "./$project.name"
+}
+
