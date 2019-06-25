@@ -20,15 +20,18 @@ public class Topic {
      * The name of the topic
      */
     private String topicName;
+
     /**
      * The string identifying the Topic directory in the notation ".../.../topicDir"
      * where the path is relative to the classPath root
      */
     private String topicDirName;
+
     /**
      * The list of lessons pertaining this topic, in the order they need to be displayed in the sidebar
      */
     private List<Lesson> lessonList = new ArrayList<>();
+
 
     /**
      * Constructor that loads the topic data from a given folder in a sort of distribution-agnostic way.
@@ -56,6 +59,7 @@ public class Topic {
             exit(1);
         }
     }
+
 
     public String getTopicName() {
         return topicName;

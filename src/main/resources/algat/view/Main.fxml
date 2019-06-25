@@ -1,39 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/8" fx:controller="algat.controller.Main">
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algat.controller.Main">
     <children>
-        <SplitPane dividerPositions="0.2491638795986622" layoutX="138.0" layoutY="73.0"
-                   prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane fx:id="mainSplitPane" dividerPositions="0.27759197324414714" layoutY="9.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minWidth="0.0">
                     <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0"
-                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
+                        <AnchorPane fx:id="sideTopBar" minHeight="-Infinity" prefHeight="40.0">
+                           <children>
+                              <BorderPane maxHeight="40.0" prefHeight="40.0" styleClass="dark-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <left>
+                                    <Label minHeight="40.0" styleClass="dark-bar" text="AlgaT" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <BorderPane.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </BorderPane.margin>
+                                    </Label>
+                                 </left>
+                                 <right>
+                                    <ImageView fx:id="collapseButtonIV" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#collapseSidebar" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <cursor>
+                                          <Cursor fx:constant="OPEN_HAND" />
+                                       </cursor>
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                       <image>
+                                          <Image url="@images/play-arrow.png" />
+                                       </image>
+                                       <BorderPane.margin>
+                                          <Insets right="5.0" />
+                                       </BorderPane.margin>
+                                    </ImageView>
+                                 </right>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
                                 <AnchorPane prefHeight="20000.0">
                                     <children>
-                                        <VBox fx:id="topicNavigationVBox" prefHeight="200.0" prefWidth="100.0"
-                                              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                                        <VBox fx:id="topicNavigationVBox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                     </children>
                                 </AnchorPane>
-                                <ToolBar prefHeight="30.0">
-                                    <items>
-                                        <Button mnemonicParsing="false" text="Button"/>
-                                    </items>
-                                </ToolBar>
+                        <AnchorPane fx:id="sideBotBar" minHeight="-Infinity" prefHeight="20.0" styleClass="dark-bar" />
                             </children>
                         </VBox>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"/>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="mainTopBar" minHeight="-Infinity" prefHeight="40.0">
+                           <children>
+                              <BorderPane styleClass="light-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <left>
+                                    <ImageView fx:id="expandButtonIV" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#expandSidebar" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <cursor>
+                                          <Cursor fx:constant="OPEN_HAND" />
+                                       </cursor>
+                                       <image>
+                                          <Image url="@images/play-arrow.png" />
+                                       </image>
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                       <BorderPane.margin>
+                                          <Insets left="5.0" />
+                                       </BorderPane.margin>
+                                    </ImageView>
+                                 </left>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="20000.0" />
+                        <AnchorPane id="light-bar" fx:id="mainBotBar" minHeight="-Infinity" prefHeight="20.0" styleClass="light-bar" />
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
             </items>
         </SplitPane>
     </children>

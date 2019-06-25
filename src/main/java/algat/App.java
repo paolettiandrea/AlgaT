@@ -39,7 +39,7 @@ public class App extends Application {
 
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("view/styles.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("view/css/styles.css").toExternalForm());
 
         primaryStage.setTitle("AlgaT");
         primaryStage.setScene(scene);

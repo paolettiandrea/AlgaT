@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Antaro';
+    src: url('../fonts/antaro.otf');
+}
+
+@font-face {
+    font-family: 'Space Mono Bold';
+    src: url('../fonts/Space_Mono/SpaceMono-Bold.ttf');
+}
+
+
+* {
+    -fx-dark-color: #323046;
+    -fx-light-color: #d6d4ff
+
+}
+
+
+.button {
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-background-color: transparent;
+}
+
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 0 0 0;
+}
+
+
+.dark-bar {
+    -fx-background-color: -fx-dark-color;
+    -fx-text-fill: -fx-light-color;
+}
+
+.light-bar {
+    -fx-background-color: -fx-light-color;
+    -fx-text-fill: -fx-dark-color;
+}
+
