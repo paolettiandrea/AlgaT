@@ -37,6 +37,9 @@ public class Main {
     @FXML
     private SplitPane mainSplitPane;
 
+    @FXML
+    private ContentPanel contentPanelController;
+
 
 
 
@@ -57,10 +60,10 @@ public class Main {
 
         for (Topic topic : data.getTopicList()) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/algat/view/TopicMenuField.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/algat/view/fxml/TopicMenuField.fxml"));
                 AnchorPane topicMenuField = loader.load();
                 TopicMenuField topicMenuFieldController = loader.getController();
-                topicMenuFieldController.populate(topic);
+                topicMenuFieldController.populate(topic, contentPanelController);
                 topicNavigationVBox.getChildren().add(topicMenuField);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -145,6 +148,5 @@ public class Main {
 
         sequentialTransition.play();
     }
-
 
 }

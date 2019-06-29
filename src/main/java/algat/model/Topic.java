@@ -1,6 +1,7 @@
 package algat.model;
 
 import algat.App;
+import algat.model.lesson.Lesson;
 
 import java.io.BufferedReader;
 import java.io.IOException;

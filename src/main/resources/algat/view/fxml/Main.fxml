@@ -41,7 +41,7 @@
                                           <Rectangle2D />
                                        </viewport>
                                        <image>
-                                          <Image url="@images/play-arrow.png" />
+                                          <Image url="@../images/play-arrow.png" />
                                        </image>
                                        <BorderPane.margin>
                                           <Insets right="5.0" />
@@ -70,11 +70,8 @@
                               <BorderPane styleClass="light-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <left>
                                     <ImageView fx:id="expandButtonIV" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#expandSidebar" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                       <cursor>
-                                          <Cursor fx:constant="OPEN_HAND" />
-                                       </cursor>
                                        <image>
-                                          <Image url="@images/play-arrow.png" />
+                                          <Image url="@../images/play-arrow.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
@@ -87,7 +84,10 @@
                               </BorderPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="20000.0" />
+                        <AnchorPane prefHeight="20000.0">
+                           <children>
+                               <fx:include fx:id="contentPanel" source="ContentPanel.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children></AnchorPane>
                         <AnchorPane id="light-bar" fx:id="mainBotBar" minHeight="-Infinity" prefHeight="20.0" styleClass="light-bar" />
                      </children>
                   </VBox>

@@ -29,7 +29,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.primaryStage = stage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/fxml/Main.fxml"));
         Parent root = loader.load();
 
         // Load the content data and populate the hierarchy with it
@@ -38,13 +38,11 @@ public class App extends Application {
         mainController.populate(data);
 
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 100, 100);
         scene.getStylesheets().add(getClass().getResource("view/css/styles.css").toExternalForm());
 
         primaryStage.setTitle("AlgaT");
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
     }
 }
