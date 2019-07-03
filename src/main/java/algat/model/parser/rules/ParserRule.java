@@ -1,19 +1,32 @@
 package algat.model.parser.rules;
 
-import javafx.scene.Node;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.TextFlow;
+public abstract class ParserRule {
 
-import java.util.List;
+    protected String name;
+    protected char startingChar;
+    protected char terminationChar;
 
-/**
- * Object that define a parser rule
- */
-public interface ParserRule {
-    String getStartingString();
-    String getTerminationString();
-    boolean isTerminal();
 
-    void applyStyle(Node node);
-    void assembleContent(String string, List<ParserRule> ruleStack, TextFlow lastTextFlow, VBox contentVBox);
+    public ParserRule(String name, char startingChar, char terminationChar) {
+        this.name = name;
+        this.startingChar = startingChar;
+        this.terminationChar = terminationChar;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public char getStartingChar() {
+        return startingChar;
+    }
+
+    public char getTerminationChar() {
+        return terminationChar;
+    }
+
+    public boolean isSpecialChar(char c) {
+        return (c==terminationChar || c==startingChar);
+    }
 }

@@ -1,24 +1,25 @@
 package algat.model.lesson;
 
+import javafx.scene.Node;
+import javafx.scene.text.Text;
+
 /**
  * A piece of text with uniform styling
  */
-public class TextChunk {
-    public TextChunk(String toBeParsed) {
-        textContent = toBeParsed;
+public class TextChunk extends ParagraphContent {
+    public TextChunk(String textContent, String stylingString) {
+        super(textContent, stylingString);
     }
 
-    /**
-     * The string contained in this chunk
-     */
-    String textContent;
-
-    /**
-     * The string defining the styling of this chunk in fxml syntax
-     */
-    String stylingString;
 
     public String getTextContent() {
         return textContent;
+    }
+
+    @Override
+    public Node assembleNode() {
+        Text text = new Text(textContent);
+        text.setStyle(stylingString);
+        return text;
     }
 }

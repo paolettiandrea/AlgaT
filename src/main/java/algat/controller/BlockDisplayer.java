@@ -3,13 +3,12 @@ package algat.controller;
 import algat.model.lesson.Block;
 import algat.model.lesson.BlockContent;
 import algat.model.lesson.Paragraph;
-import algat.model.lesson.TextChunk;
+import algat.model.lesson.ParagraphContent;
 import algat.view.AppViewSettings;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
@@ -49,9 +48,9 @@ public class BlockDisplayer {
                 Paragraph paragraphContent = (Paragraph)content;
                 TextFlow paragraphTextFlow = new TextFlow();
 
-                for (TextChunk textChunk: paragraphContent.getTextContent()) {
-                    paragraphTextFlow.getChildren().add(new Text(textChunk.getTextContent()));
-
+                for (ParagraphContent parContent: paragraphContent.getContentList()) {
+                        paragraphTextFlow.getChildren().add(parContent.assembleNode());
+                        paragraphTextFlow.setPadding(new Insets(AppViewSettings.contentParagraphSpacing,0,0,0));
                 }
                 actualContentVBox.getChildren().add(paragraphTextFlow);
             }

@@ -10,6 +10,10 @@ public class AppViewSettings {
 
     public static final int contentBlockSpacing = 20;
 
+    public static final int menuLessonIndentation = 10;
+
+    public static final int contentParagraphSpacing = 3;
+
     //public static final int[] headerTopSpacings = new int[] {5, 3, 21, 18};
 
 

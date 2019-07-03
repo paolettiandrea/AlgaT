@@ -1,5 +1,7 @@
 package algat.model.lesson;
 
+import algat.model.parser.Parser;
+
 import java.util.LinkedList;
 
 /**
@@ -7,13 +9,15 @@ import java.util.LinkedList;
  */
 public class Paragraph implements BlockContent {
 
-    LinkedList<TextChunk> textContent = new LinkedList<>();
+    private LinkedList<ParagraphContent> textContent;
 
     public Paragraph(String toBeParsed) {
-        textContent.add(new TextChunk(toBeParsed));
+        Parser parser = new Parser();
+        parser.parse(toBeParsed);
+        textContent = parser.getAssembledContent();
     }
 
-    public LinkedList<TextChunk> getTextContent() {
+    public LinkedList<ParagraphContent> getContentList() {
         return textContent;
     }
 }

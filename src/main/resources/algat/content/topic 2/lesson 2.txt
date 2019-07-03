@@ -1,12 +1,16 @@
-dfsdfs fsdfsdfsd sdfs
+dfsdfs fsdfsdfsd sdfs *italic* and ^bold^ and *^dzfk^ asddsad*
+
+It should be also possible to insert inline textual elements like hyperlinks: {link [www.google.it](click here)}
+
+{interactive [name] (head with some *styling*) }
 
 # Header 1
 sdsfds
 sdfsdfsdfsdf
 
-
 asdSA
 SDFSA SDFSDF S
+
 ##Header 2
 sdfsdfsdfds
 fsdfsd
@@ -27,7 +31,8 @@ sdfsdfsdf
 sd dfs sdf sd f sdf sd fsd f sdf sd f sd f
 
 ## Header level2
-dsfs sdf f sd f sd fs df sd f sd f sdf sd f sd f sd f sdf s df sd f sdf sd f sd fsd f sd fs df sd fs df sd f sdf sd fs df
+dsfs sdf f sd f *sd* fs df sd f sd f sdf sd f sd f sd f sdf s df sd f sdf sd f sd fsd f sd fs df sd fs df sd f sdf sd fs df
+
 sdfsdfsd sd fsdf sd f sdf s df sd f sdf sd f sd f ds f dsf ds f ds f sdf sdf sd f ds fsd f sd fs df sd fsd f sd f sdf sd fs d
 
 # Headasd

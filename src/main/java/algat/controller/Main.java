@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -61,7 +60,7 @@ public class Main {
         for (Topic topic : data.getTopicList()) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/algat/view/fxml/TopicMenuField.fxml"));
-                AnchorPane topicMenuField = loader.load();
+                VBox topicMenuField = loader.load();
                 TopicMenuField topicMenuFieldController = loader.getController();
                 topicMenuFieldController.populate(topic, contentPanelController);
                 topicNavigationVBox.getChildren().add(topicMenuField);
@@ -74,7 +73,7 @@ public class Main {
 
     @FXML
     public void expandSidebar() {
-        double val = topicNavigationVBox.getPrefWidth()/mainSplitPane.getWidth() + expandButtonIV.getFitWidth()/mainSplitPane.getWidth();
+        double val = topicNavigationVBox.getWidth()/mainSplitPane.getWidth() + 200/mainSplitPane.getWidth();
 
         KeyValue keyValue = new KeyValue(mainSplitPane.getDividers().get(0).positionProperty(), val);
         Timeline dividerSlidingTimeline = new Timeline(new KeyFrame(SIDEBAR_ANIMATION_DURATION, keyValue));
@@ -148,5 +147,6 @@ public class Main {
 
         sequentialTransition.play();
     }
+
 
 }
