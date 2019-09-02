@@ -1,5 +1,6 @@
 package algat.controller;
 
+import algat.controller.content.ContentPanel;
 import algat.model.AppContent;
 import algat.model.Topic;
 import javafx.animation.*;
@@ -23,23 +24,17 @@ public class Main {
 
     @FXML
     private ImageView collapseButtonIV;
-
     @FXML
     private ImageView expandButtonIV;
-
     /**
      * An FX-injected reference to the VBox meant to contain the navigation menu
      */
     @FXML
     private VBox topicNavigationVBox;
-
     @FXML
     private SplitPane mainSplitPane;
-
     @FXML
     private ContentPanel contentPanelController;
-
-
 
 
     /**
@@ -47,7 +42,8 @@ public class Main {
      */
     public void initialize()
     {
-
+        mainSplitPane.setDividerPositions(0);
+        collapseButtonIV.setTranslateX(collapseButtonIV.getFitWidth()*2);
     }
 
     /**
@@ -64,6 +60,8 @@ public class Main {
                 TopicMenuField topicMenuFieldController = loader.getController();
                 topicMenuFieldController.populate(topic, contentPanelController);
                 topicNavigationVBox.getChildren().add(topicMenuField);
+
+
             } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("ERROR:failed to load the TopicMenuField");
@@ -71,9 +69,10 @@ public class Main {
         }
     }
 
+
     @FXML
     public void expandSidebar() {
-        double val = topicNavigationVBox.getWidth()/mainSplitPane.getWidth() + 200/mainSplitPane.getWidth();
+        double val = topicNavigationVBox.getWidth()/mainSplitPane.getWidth();
 
         KeyValue keyValue = new KeyValue(mainSplitPane.getDividers().get(0).positionProperty(), val);
         Timeline dividerSlidingTimeline = new Timeline(new KeyFrame(SIDEBAR_ANIMATION_DURATION, keyValue));

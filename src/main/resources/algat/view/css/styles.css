@@ -10,13 +10,9 @@
 
 
 * {
-    -fx-dark-color: #323046;
-    -fx-light-color: #d6d4ff;
-}
+    -fx-dark-color: #3b3946;
 
-
-.button {
-
+    -fx-light-color: derive(-fx-dark-color, 85%)
 }
 
 
@@ -35,3 +31,43 @@
     -fx-text-fill: -fx-dark-color;
 }
 
+
+.image-displayer {
+    -fx-alignment: center;
+    -fx-padding: 10 0 10 0;
+
+}
+
+.image-displayer > ScrollPane {
+    -fx-background-color: transparent;
+    -fx-pannable: true;
+    -fx-hbar-policy: never;
+    -fx-fit-to-width: true;
+}
+
+.image-displayer > TextFlow {
+    -fx-text-alignment: center;
+    -fx-padding: 3 20 0 20;
+}
+
+.image-displayer > * > Text {
+    -fx-fill: #333333;
+    -fx-font-size: 11;
+}
+
+.hyperlink {
+    -fx-fill: #2a3d75;
+}
+
+.hyperlink:pressed {
+    -fx-fill: #3a5aff;
+}
+
+.paragraph {
+    -fx-padding: 3 0 0 0;
+}
+
+.topic-label {
+    -fx-font-size: 18;
+    -fx-font-family: "Space Mono Bold";
+}
