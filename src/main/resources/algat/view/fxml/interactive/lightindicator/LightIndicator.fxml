@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<fx:root styleClass="LightIndicator" type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Circle fx:id="backCircle" fill="#3e3f40" radius="85.0" stroke="#47474700" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="frontCircle" fill="#376086" radius="70.0" stroke="TRANSPARENT" strokeType="OUTSIDE" strokeWidth="0.0">
+               <effect>
+                  <InnerShadow color="#ffffff00" />
+               </effect>
+            </Circle>
+         </children>
+      </StackPane>
+   </children>
+</fx:root>

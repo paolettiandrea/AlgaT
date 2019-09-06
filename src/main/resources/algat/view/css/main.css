@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'Space Mono Bold';
+    src: url('../fonts/Space_Mono/SpaceMono-Bold.ttf');
+}
+@font-face {
+    font-family: 'Space Mono';
+    src: url('../fonts/Space_Mono/SpaceMono-Regular.ttf');
+}
+@font-face {
+    font-family: 'Space Mono Italic';
+    src: url('../fonts/Space_Mono/SpaceMono-Italic.ttf');
+}
+@font-face {
+    font-family: 'Space Mono Bold Italic';
+    src: url('../fonts/Space_Mono/SpaceMono-BoldItalic.ttf');
+}
+
+
+* {
+    -fx-dark-color: #242424;
+    -fx-light-color: derive(-fx-dark-color, 20%);
+    -fx-lighter-color: derive(-fx-dark-color, 90%);
+}
+
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 0 0 0;
+}
+
+
+.dark-bar {
+    -fx-background-color: -fx-dark-color;
+    -fx-text-fill: -fx-light-color;
+}
+
+.light-bar {
+    -fx-background-color: -fx-lighter-color;
+}
+
+.hyperlink {
+    -fx-fill: #2a3d75;
+}
+
+.hyperlink:pressed {
+    -fx-fill: #3a5aff;
+}
+
+.topic-label {
+    -fx-font-size: 18;
+    -fx-font-family: "Space Mono Bold";
+    -fx-text-fill: derive( -fx-lighter-color, -20%);
+}
+
+.lesson-menu-label {
+    -fx-font-size: 13;
+    -fx-font-family: "Space Mono Bold";
+    -fx-text-fill: -fx-lighter-color;
+    -fx-cursor: OPEN_HAND;
+}
+
+.lesson-menu-label:hover {
+    -fx-text-fill: -fx-dark-color;
+}
+
+
+.sideMenu {
+    -fx-background-color: -fx-light-color;
+    -fx-text-fill: -fx-lighter-color;
+    -fx-padding: 10 10 5 5;
+}
+
+.ui-polygon-button {
+    -fx-stroke-width: 4;
+    -fx-stroke-line-join: ROUND;
+}
+
+.ui-dark {
+    -fx-stroke: -fx-dark-color;
+}
+
+.ui-light {
+    -fx-stroke: -fx-lighter-color;
+}
+
+#collapse-sidebar-button {
+    -fx-fill: -fx-lighter-color;
+}
+#expand-sidebar-button {
+    -fx-fill: -fx-dark-color;
+}
+
+.light-indicator {
+    -fx-stroke-width: 60;
+}

@@ -23,8 +23,6 @@ public class InteractiveWrapper implements BlockContent {
 
     @Override
     public Node assemble() {
-        // TODO load the concrete InteractiveContentController
-
         FXMLLoader loader = new FXMLLoader(App.class.getResource("view/fxml/interactive/InteractiveWrapper.fxml"));
         try {
             Node node = loader.load();

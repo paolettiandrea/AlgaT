@@ -48,7 +48,6 @@ public class Topic {
             BufferedReader br = new BufferedReader(new InputStreamReader(inStream));
             String lessonName = br.readLine();
             while (lessonName != null) {
-                System.out.println(lessonName);
                 lessonList.add(new Lesson(lessonName, topicResourceName + "/" + lessonName + Lesson.EXPECTED_FILE_EXTENSION));
                 lessonName = br.readLine();
             }

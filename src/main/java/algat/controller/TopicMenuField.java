@@ -36,6 +36,7 @@ public class TopicMenuField {
         topicLabel.setText(topic.getTopicName());
         for (Lesson lesson : topic.getLessonList()) {
             Label lessonMenuButton = new Label(lesson.getName());
+            lessonMenuButton.getStyleClass().add("lesson-menu-label");
             lessonMenuButton.setPadding(new Insets(0, 0, 0, AppViewSettings.menuLessonIndentation));
             lessonMenuButton.setOnMouseClicked(event -> {
 
@@ -53,8 +54,6 @@ public class TopicMenuField {
                 }
 
             });
-            //lessonMenuButton.setPadding(new Insets(0,0,0,30));
-
 
             BorderPane lessonBorderPane = new BorderPane();
 
@@ -62,6 +61,7 @@ public class TopicMenuField {
 
             if (!lesson.getQuestions().isEmpty()) {
                 Label quizMenuButton = new Label("Q");
+                quizMenuButton.getStyleClass().add("lesson-menu-label");
                 lessonBorderPane.setRight(quizMenuButton);
 
                 quizMenuButton.setOnMouseClicked(event -> {

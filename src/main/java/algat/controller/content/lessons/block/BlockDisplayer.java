@@ -4,7 +4,6 @@ import algat.model.lesson.block.Block;
 import algat.model.lesson.block.BlockContent;
 import algat.view.AppViewSettings;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -17,10 +16,6 @@ public class BlockDisplayer {
     public VBox actualContentVBox;
     public VBox childBlocksVBox;
 
-
-    public void initialize() {
-        blockTitleLabel.setPadding(new Insets(AppViewSettings.contentBlockSpacing,0.0,0.0,0.0));
-    }
 
     /**
      * Populates the displayer with the given block

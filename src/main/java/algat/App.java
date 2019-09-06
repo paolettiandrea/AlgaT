@@ -48,11 +48,11 @@ public class App extends Application {
         // Load the content data and populate the hierarchy with it
         AppContent data = new AppContent("content");
         Main mainController = loader.getController();
-        mainController.populate(data);
+        mainController.populate(data, primaryStage);
 
 
-        Scene scene = new Scene(root, 100, 100);
-        scene.getStylesheets().add(getClass().getResource("view/css/styles.css").toExternalForm());
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(getClass().getResource("view/css/main.css").toExternalForm());
 
         primaryStage.setTitle("AlgaT");
         primaryStage.setScene(scene);

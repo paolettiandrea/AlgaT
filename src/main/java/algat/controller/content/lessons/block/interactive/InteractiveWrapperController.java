@@ -1,18 +1,20 @@
 package algat.controller.content.lessons.block.interactive;
 
 import algat.App;
+import algat.controller.content.lessons.block.interactive.lightindicator.LightIndicator;
 import algat.model.lesson.block.interactive.InteractiveContentController;
-import javafx.animation.ParallelTransition;
-import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Transition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -25,15 +27,48 @@ public class InteractiveWrapperController {
     public Slider speedSlider;
     public Button resetButton;
     public Button stepButton;
-    public Button autoButton;
+    public StackPane autoButtonStackContainer;
+    public StackPane customContentContainer;
+    public Path controlPanelBackgroundShape;
+    private LightIndicator autoIndicator;
 
     SequentialTransition singleStepTransition;
+    ParallelTransition controlPanelColorTransition;
     private boolean autoFlag = false;
     private boolean isPlayingFlag = false;
+
+    private final Color INDICATOR_ON_COLOR = new Color(0.5, 0.9, 0.5, 1);
+    private final Color INDICATOR_OFF_COLOR = new Color(0.9, 0.5, 0.5, 1);
+
+    private final Duration CONTROL_PANEL_FILL_CHANGE_DURATION = Duration.seconds(0.3);
+    private final Color CONTROL_PANEL_STEPPING_COLOR = new Color(0.7, 0.9, 0.6, 1);
+    private final Color CONTROL_PANEL_PAUSE_COLOR = new Color(0.8, 0.8, 0.5, 1);
+    private final Color CONTROL_PANEL_INACTIVE_COLOR = new Color(0.7, 0.7, 0.7, 1);
+
+
+
 
 
     private InteractiveContentController contentController;
 
+    public void initialize() {
+        autoIndicator = new LightIndicator();
+        autoIndicator.setLightColorNoAnimation(INDICATOR_OFF_COLOR);
+        autoButtonStackContainer.getChildren().add(autoIndicator);
+        autoIndicator.setRadius(8);
+
+        Tooltip autoIndicatorTooltip = new Tooltip("Toggle auto stepping");
+        Tooltip.install(autoIndicator, autoIndicatorTooltip);
+
+        Tooltip stepButtonTooltip = new Tooltip("Step");
+        Tooltip.install(stepButton, stepButtonTooltip);
+
+        Tooltip resetButtonTooltip = new Tooltip("Reset");
+        Tooltip.install(resetButton, resetButtonTooltip);
+
+        controlPanelBackgroundShape.setFill(CONTROL_PANEL_INACTIVE_COLOR);
+        controlPanelBackgroundShape.setStroke(CONTROL_PANEL_INACTIVE_COLOR);
+    }
 
     @FXML
     public void step() {
@@ -66,6 +101,14 @@ public class InteractiveWrapperController {
     public void auto()
     {
         autoFlag = !autoFlag;
+
+        if (autoFlag) {
+            autoIndicator.setLightColor(INDICATOR_ON_COLOR);
+        } else {
+            autoIndicator.setLightColor(INDICATOR_OFF_COLOR);
+        }
+
+        // if not already playing start
         if (!isPlayingFlag && autoFlag) {
             initiateStep();
         }
@@ -82,21 +125,23 @@ public class InteractiveWrapperController {
         try {
             Node node = loader.load();
             contentController = loader.getController();
-            AnchorPane.setBottomAnchor(node, 0.0);
-            AnchorPane.setTopAnchor(node, 0.0);
-            AnchorPane.setLeftAnchor(node, 0.0);
-            AnchorPane.setRightAnchor(node, 0.0);
-            borderPane.setCenter(node);
+            customContentContainer.getChildren().add(node);
+            //StackPane.setAlignment(node, Pos.CENTER);
+            //BorderPane.setMargin(node, new Insets(10,10,10,10));
 
             contentController.reset();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
 
     private void initiateStep() {
         if (isPlayingFlag) throw new Error("The previous step was already playing");
+
+        changeControlPanelColor(CONTROL_PANEL_STEPPING_COLOR);
 
         if (!contentController.isCompletelyEnded()) {
             Transition contentStepTransition = contentController.step();
@@ -106,6 +151,7 @@ public class InteractiveWrapperController {
             ParallelTransition stepTransition = new ParallelTransition(contentStepTransition);
             stepTransition.setOnFinished(event -> {
                 // If it's not on auto there's no point in breaking, so stop the animation
+                changeControlPanelColor(CONTROL_PANEL_PAUSE_COLOR);
                 if (!autoFlag) {
                     singleStepTransition.stop();
                     animationStoppingCallback();
@@ -135,13 +181,32 @@ public class InteractiveWrapperController {
     private void animationStoppingCallback() {
         isPlayingFlag = false;
         stepButton.setDisable(false);
+        changeControlPanelColor(CONTROL_PANEL_INACTIVE_COLOR);
 
         if (contentController.isCompletelyEnded()) {
             stepButton.setDisable(true);
-
         }
 
-}
+    }
+
+    private void changeControlPanelColor(Color newColor) {
+        if (controlPanelColorTransition != null) {
+            controlPanelColorTransition.stop();
+        }
+
+        StrokeTransition controlPanelStrokeTransition = new StrokeTransition(CONTROL_PANEL_FILL_CHANGE_DURATION, controlPanelBackgroundShape);
+        controlPanelStrokeTransition.setToValue(newColor);
+
+        FillTransition controlPanelFillTransition = new FillTransition(CONTROL_PANEL_FILL_CHANGE_DURATION, controlPanelBackgroundShape);
+        controlPanelFillTransition.setToValue(newColor);
+
+        controlPanelColorTransition = new ParallelTransition(controlPanelFillTransition, controlPanelStrokeTransition);
+        controlPanelColorTransition.setOnFinished(event -> {
+            controlPanelColorTransition = null;
+        });
+
+        controlPanelColorTransition.play();
+    }
 
     private double getSpeedSliderMapped(double min, double max) {
         if (max > min) {
