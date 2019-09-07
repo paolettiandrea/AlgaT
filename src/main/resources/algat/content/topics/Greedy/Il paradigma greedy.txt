@@ -1,0 +1,22 @@
+# Introduzione
+
+Greedy è un paradigma algoritmico applicato a problemi di ottimizzazione la cui soluzione richiede una sequenza di scelte.
+
+La caratteristica fondamentale di tale paradigma è l'ottenimento di una soluzione globale tramite la scelta di
+soluzioni ^localmente ottime^ ad ogni passo di tale sequenza. Da questo il termine *greedy*, traducibile come
+*goloso*, ma anche *avido* o *impaziente*.
+
+# L'esempio del resto
+
+Il classico esempio utilizzato per illustrare un algoritmo greedy e alcune sue proprietà è quello del resto:
+
+Un cassiere deve dare una certa somma di resto a un cliente. Ha a disposizione un elenco di monete possibili, quante e quali monete dovrà dare al cliente per raggiungere la somma utilizzandone il minor numero possibile?
+
+
+
+# Algoritmi greedy e soluzioni ottime
+Il fatto che un algoritmo greedy compia scelte localmente ottime non significa necessariamente che la sua
+soluzione globale sia ottima.
+
+
+< interactive (Caption stuff) [view/fxml/interactive/custom/greedycoin/OptimalGreedyCoin.fxml] >

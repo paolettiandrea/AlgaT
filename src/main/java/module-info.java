@@ -12,5 +12,7 @@ module algat {
     opens algat.controller.content.questions to javafx.fxml;
     opens algat.controller.content.lessons.block.interactive.lightindicator to javafx.fxml;
 
+    opens algat.controller.content.lessons.block.interactive.custom.greedycoin to javafx.fxml;
+
     exports algat;
 }

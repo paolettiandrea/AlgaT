@@ -12,8 +12,8 @@ public abstract class InteractiveContentController {
     private double maxRate;
 
 
-    protected InteractiveContentController(Duration breadDuration, double minRate, double maxRate) {
-        this.breakDuration = breadDuration;
+    protected InteractiveContentController(Duration breakDuration, double minRate, double maxRate) {
+        this.breakDuration = breakDuration;
         this.minRate = minRate;
         this.maxRate = maxRate;
     }

@@ -6,6 +6,7 @@ import algat.model.lesson.block.interactive.InteractiveContentController;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -93,8 +94,6 @@ public class InteractiveWrapperController {
         contentController.reset();
 
         if (autoFlag) initiateStep();
-
-
     }
 
     @FXML
@@ -126,15 +125,22 @@ public class InteractiveWrapperController {
             Node node = loader.load();
             contentController = loader.getController();
             customContentContainer.getChildren().add(node);
-            //StackPane.setAlignment(node, Pos.CENTER);
-            //BorderPane.setMargin(node, new Insets(10,10,10,10));
-
+            StackPane.setAlignment(node, Pos.CENTER);
             contentController.reset();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        speedSlider.setSnapToTicks(false);
+        speedSlider.setMin(contentController.getMinRate());
+        speedSlider.setMax(contentController.getMaxRate());
+        speedSlider.setValue(1.0);
 
+        speedSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (singleStepTransition!=null)
+                singleStepTransition.setRate(newValue.doubleValue());
+        });
     }
 
 
@@ -173,7 +179,7 @@ public class InteractiveWrapperController {
 
             stepButton.setDisable(true);
 
-            singleStepTransition.setRate(getSpeedSliderMapped(contentController.getMinRate(), contentController.getMaxRate()));
+            singleStepTransition.setRate(speedSlider.getValue());
             singleStepTransition.play();
         }
     }
@@ -206,13 +212,5 @@ public class InteractiveWrapperController {
         });
 
         controlPanelColorTransition.play();
-    }
-
-    private double getSpeedSliderMapped(double min, double max) {
-        if (max > min) {
-            return min + speedSlider.getValue()/100*(max-min);
-        } else {
-            throw new Error ("Min:[" + min + "] is greater than max:[" + max + "]");
-        }
     }
 }
