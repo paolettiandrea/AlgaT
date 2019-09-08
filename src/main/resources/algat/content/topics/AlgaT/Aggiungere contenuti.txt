@@ -1,0 +1,93 @@
+
+<image (Un breve esempio della struttura di un file lezione e dei contenuti risultanti.) [view/images/parsed-lesson-example.png]>
+
+< interactive (Caption stuff) [view/fxml/interactive/custom/testInteractive.fxml] >
+
+# Content folder
+In questa implementazione attraverso parser i contenuti dell'applicazione sono aggiunti e salvati sotto forma di file nella cartella *algat/content*.
+
+Per il momento qui troviamo soltanto la cartella *topics*, quella in ultima analisi destinata a contenere le lezioni.
+Si è scelta questa struttura perchè in un secondo momento si potrebbero volere aggiungere altri contenuti svincolati dalle singole lezioni o dai topic che le contengono.
+
+## Topics folder
+Ancora prima di vedere la struttura dei file lezione è importante notare come anche la struttura stessa delle
+cartelle in *topic* e l'utilizzo di un secondo tipo di file ricoprano un ruolo nel definire come l' applicazione verrà popolata a runtime.
+
+Ad ogni argomento è dedicata infatti una cartella (che conterrà i file che definiscono le lezioni appartenenti a quell'argomento).
+Deve inoltre essere presente un file ^order.algat^, un semplice file di testo contenente la lista degli argomenti (con lo stesso nome della corrispondente cartella) separati da un carattere newline.
+Questi ultimi saranno mostrati nella sidebar di AlgaT nell'ordine impostato in questo file.
+
+### Struttura di un topic
+All'interno di una data cartella topic sono contenuti i file che ne definiscono le lezioni e un file ^order.algat^.
+Anche qui il file definisce l'ordine, ma questa volta delle lezione all'interno dell'argomento. Anche qui il nome presente
+nel file deve corripondere a quello di un file lezione (*ma senza estensione*).
+
+## Struttura di una lezione
+Una lezione è composta da ^blocchi^, ovvero aggregati di contenuti destinati ad essere rappresentati verticalmente e in sequenza nel pannello principale dell'applicazione.
+Le lezioni non sono però semplici liste di blocchi, bensì alberi dove idealmente un blocco figlio rappresenta e contiene un sottoargomento del blocco padre.
+
+### Blocchi
+Un blocco dunque sarà caratterizzato da un titolo, che dovrebbe rappresentare il filo conduttore che lega i suoi contenuti, i contenuti veri e propri e una lista di blocchi figli.
+
+Nei file lezione i blocchi sono definiti con il loro titolo preceduto da un numero di caratteri \# pari alla profondità del blocco in questione, esattamente come nel *markdown*.
+Questo definisce anche indirettamente la posizione del blocco nell'albero, poichè un blocco dichiarato in un dato punto del file lezione
+sarà considerato figlio dell' ultimo nodo di profondità minore incontrato.
+
+Una lezione ha sempre un blocco *root*, il cui titolo non viene presentato e il cui eventuale contenuto è quello
+dichiarato in un lesson file prima di qualsiasi dichiarazione di blocco.
+
+### Contenuti
+I contenuti veri e propri di blocco possono essere puramente testuali o costituiti da elementi speciali (come pannelli interattivi, immagini, link).
+
+Ai contenuti puramente testuali possono comunque essere applicati stili in maniera analoga al markdown.
+
+#### Elementi stilistici
+Definiscono lo stile degli elementi testuali contenuti tra il carattere di inizio e quello di terminazione.
+
+\*italic\* = *italic*
+
+\^bold\^ = ^bold^
+
+Da notare che (ad ora) i caratteri di terminazione e quelli di inizio sono uguali. L'
+utilizzo di caratteri differenti è supportato e in alcuni casi consente al parser di dare migliori messaggi di errore,
+ma in questo modo il singolo carattere può essere pensato come un *toggle*
+dello stile corrispondente, il che forse è un po' più intuitivo.
+
+Gli stili possono essere attivati e disattivati indipendentemente gli uni dagli altri:
+
+\^some \*weirdly styled\^ text\* = ^some *weirdly styled^ text*
+
+I caratteri speciali possono essere rappresentati attraverso l'utilizzo di ^ \ ^:
+
+\\^text\\^ = \^text\^
+
+
+
+#### Oggetti speciali
+Nei lesson file possono essere inoltre definiti oggetti speciali quali link, immagini, pannelli interattivi e così via tramite una notazione specifica.
+
+Va però innanzitutto fatta una distizione tra elementi di paragrafo e di blocco.
+
+##### Oggetti di blocco
+
+Sintassi: ^<^ *nomeBlocco* ^(^*head*^)^ ^[^*param*^] >^
+
+Sono gli elementi che non possono essere inseriti all'interno dei paragrafi, come immagini o pannelli interattivi e
+che devono essere dunque rappresentati a livello del blocco, ovvero come elementi "alternativi" ai paragrafi e inframezzati tra di essi.
+
+Questi elementi quando dichiarati devono essere preceduti e seguiti da una riga vuota, esattamente come un paragrafo.
+
+##### Oggetti di paragrafo
+
+Sintassi:
+
+Sono gli elementi che possono essere inseriti all' interno dei paragrafi come dei normali elementi testuali, per esempio i *link*.
+
+
+< image (some random casd sdf sdf  *sdf sd f as as df s df* fsgdfgd ^dfg df gsdfption^ text) [view/images/arro.png] >
+
+
+# Header 1
+
+Questa
+
