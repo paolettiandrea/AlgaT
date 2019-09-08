@@ -26,6 +26,7 @@ public class InteractiveWrapper implements BlockContent {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("view/fxml/interactive/InteractiveWrapper.fxml"));
         try {
             Node node = loader.load();
+            node.setStyle("-fx-border: transparent");
             InteractiveWrapperController controller = loader.getController();
             controller.loadContent(fxmlPath);
             return node;

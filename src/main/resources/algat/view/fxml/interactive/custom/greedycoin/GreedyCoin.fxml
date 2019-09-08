@@ -10,8 +10,8 @@
             <HBox fx:id="coinHBox" />
             <AnchorPane>
                <children>
-                  <Rectangle fx:id="amountContainerRectangle" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff3e" height="20.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="4.0" width="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <HBox fx:id="amountHBox" alignment="BOTTOM_LEFT" styleClass="amount-hbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Rectangle fx:id="amountContainerRectangle" arcHeight="5.0" arcWidth="5.0" fill="#b9b9b9" height="20.0" stroke="#323232" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="4.0" width="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <HBox fx:id="amountHBox" alignment="BOTTOM_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <AnchorPane fx:id="coinContainerAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>

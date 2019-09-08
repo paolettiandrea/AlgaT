@@ -92,3 +92,7 @@
 .light-indicator {
     -fx-stroke-width: 60;
 }
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}

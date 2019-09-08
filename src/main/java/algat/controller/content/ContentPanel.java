@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 /**
- * Controller for the panel responsible for managing and displaying the content of the app (Lessons and Quiz)
+ * Controller for the panel responsible for managing and displaying the content of the app (Lessons and Quizzes)
  */
 public class ContentPanel {
 

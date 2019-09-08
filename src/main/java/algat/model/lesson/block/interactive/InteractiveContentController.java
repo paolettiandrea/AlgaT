@@ -1,5 +1,6 @@
 package algat.model.lesson.block.interactive;
 
+import algat.controller.content.lessons.block.interactive.InteractiveWrapperInterface;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 
@@ -11,11 +12,17 @@ public abstract class InteractiveContentController {
     private double minRate;
     private double maxRate;
 
+    protected InteractiveWrapperInterface wrapperInterface;
+
 
     protected InteractiveContentController(Duration breakDuration, double minRate, double maxRate) {
         this.breakDuration = breakDuration;
         this.minRate = minRate;
         this.maxRate = maxRate;
+    }
+
+    public void setWrapperInterface(InteractiveWrapperInterface interf) {
+        wrapperInterface = interf;
     }
 
 

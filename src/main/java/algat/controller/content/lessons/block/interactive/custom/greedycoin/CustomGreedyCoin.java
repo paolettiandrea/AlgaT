@@ -36,8 +36,8 @@ public class CustomGreedyCoin extends InteractiveContentController {
 
         greedyCore = new GreedyCoin(posCoins, amount);
         mainPane.setCenter(greedyCore);
+        wrapperInterface.enableControlPanel();
         reset();
-
     }
 
     private List<Integer> parsePossibleCoinList(String possibleCoinsString) {
@@ -60,12 +60,17 @@ public class CustomGreedyCoin extends InteractiveContentController {
     public void reset() {
         super.reset();
 
-        if (greedyCore!=null)
+        if (greedyCore!=null) {
             greedyCore.reset();
+        } else {
+            wrapperInterface.disableControlPanel();
+        }
+
     }
 
     @Override
     public boolean isCompletelyEnded() {
         return greedyCore.isDone();
     }
+
 }

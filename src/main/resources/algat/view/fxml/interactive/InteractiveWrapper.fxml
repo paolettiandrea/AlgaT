@@ -7,13 +7,13 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
-<ScrollPane fitToWidth="true" minHeight="-Infinity" minWidth="-Infinity" pannable="true" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algat.controller.content.lessons.block.interactive.InteractiveWrapperController">
+<ScrollPane fitToWidth="true" minHeight="-Infinity" minWidth="-Infinity" pannable="true" styleClass="interactive-wrapper-scrollpane" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algat.controller.content.lessons.block.interactive.InteractiveWrapperController">
   <content>
-    <AnchorPane>
+    <AnchorPane styleClass="interactive-wrapper-support-anchorpane">
          <children>
-            <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <StackPane styleClass="interactive-wrapper-support-stackpane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <BorderPane fx:id="borderPane">
+                  <BorderPane fx:id="borderPane" styleClass="interactive-wrapper-borderpane">
                      <bottom>
                         <StackPane BorderPane.alignment="CENTER">
                            <children>
@@ -99,7 +99,7 @@
                         </StackPane>
                      </bottom>
                      <center>
-                        <StackPane fx:id="customContentContainer" styleClass="custom-interactive-container" BorderPane.alignment="CENTER" />
+                        <BorderPane fx:id="customContentContainer" styleClass="interactive-content-container" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>

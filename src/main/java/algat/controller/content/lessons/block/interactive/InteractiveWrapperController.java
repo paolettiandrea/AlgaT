@@ -6,7 +6,6 @@ import algat.model.lesson.block.interactive.InteractiveContentController;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -22,14 +21,14 @@ import java.io.IOException;
 // TODO disable step button while still executing step
 // TODO disable step button if the animation is terminated
 
-public class InteractiveWrapperController {
+public class InteractiveWrapperController implements InteractiveWrapperInterface {
 
     public BorderPane borderPane;
     public Slider speedSlider;
     public Button resetButton;
     public Button stepButton;
     public StackPane autoButtonStackContainer;
-    public StackPane customContentContainer;
+    public BorderPane customContentContainer;
     public Path controlPanelBackgroundShape;
     private LightIndicator autoIndicator;
 
@@ -37,6 +36,7 @@ public class InteractiveWrapperController {
     ParallelTransition controlPanelColorTransition;
     private boolean autoFlag = false;
     private boolean isPlayingFlag = false;
+    private boolean isControlPanelDisabled = false;
 
     private final Color INDICATOR_ON_COLOR = new Color(0.5, 0.9, 0.5, 1);
     private final Color INDICATOR_OFF_COLOR = new Color(0.9, 0.5, 0.5, 1);
@@ -104,7 +104,7 @@ public class InteractiveWrapperController {
         }
 
         // if not already playing start
-        if (!isPlayingFlag && autoFlag) {
+        if (!isPlayingFlag && autoFlag && !isControlPanelDisabled) {
             initiateStep();
         }
     }
@@ -120,8 +120,9 @@ public class InteractiveWrapperController {
         try {
             Node node = loader.load();
             contentController = loader.getController();
-            customContentContainer.getChildren().add(node);
-            StackPane.setAlignment(node, Pos.CENTER);
+            contentController.setWrapperInterface((InteractiveWrapperInterface)this);
+            customContentContainer.setCenter(node);
+
             contentController.reset();
 
         } catch (IOException e) {
@@ -209,5 +210,19 @@ public class InteractiveWrapperController {
         });
 
         controlPanelColorTransition.play();
+    }
+
+    @Override
+    public void disableControlPanel() {
+        resetButton.setDisable(true);
+        stepButton.setDisable(true);
+        isControlPanelDisabled = true;
+    }
+
+    @Override
+    public void enableControlPanel() {
+        resetButton.setDisable(false);
+        stepButton.setDisable(false);
+        isControlPanelDisabled = false;
     }
 }

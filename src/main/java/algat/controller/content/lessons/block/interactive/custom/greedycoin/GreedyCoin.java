@@ -12,6 +12,7 @@ import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
 
@@ -26,10 +27,10 @@ public class GreedyCoin extends AnchorPane {
     double amount;
     double horizontalScale;
 
-    List<Coin> possibleCoinsList = new Vector<>();
-    int lastPossibleCoinConsideredIndex;
-    double amountRemained;
-    double amountLastOccupiedXPos;
+    private List<Coin> possibleCoinsList = new Vector<>();
+    private int lastPossibleCoinConsideredIndex;
+    private double amountRemained;
+    private double amountLastOccupiedXPos;
 
     private static final double COIN_SPACING = 5;
     private static final double AMOUNT_CONTAINER_STROKE_WIDTH = 6;
@@ -37,13 +38,12 @@ public class GreedyCoin extends AnchorPane {
     private static final Duration COIN_FADE_IN_DURATION = Duration.seconds(0.2);
     private static final Duration POSSIBLE_COINS_FADE_DURATION = Duration.seconds(0.4);
     private static final Duration INACTIVATION_COLOR_CHANGE_DURATION = Duration.seconds(0.2);
-    private static final double UNFOCUSED_POSSIBLE_COINS_OPACITY = 0.1;
+    private static final double UNFOCUSED_POSSIBLE_COINS_OPACITY = 0.2;
     private static final Color ALREADY_CHECKED_POSSIBLE_COIN_COLOR = new Color(0.7,0.7,0.7,1);
 
 
-    private static final double COIN_COLOR_ALTERNATION_FACTOR = 0.08;
+    private static final double COIN_COLOR_ALTERNATION_FACTOR = 0.03;
     private static final Color[] possibleColors = {
-            Color.web("rgb(26, 188, 156)"),
             Color.web("rgb(46, 204, 113)"),
             Color.web("rgb(52, 152, 219)"),
             Color.web("rgb(155, 89, 182)"),
@@ -64,6 +64,8 @@ public class GreedyCoin extends AnchorPane {
 
         this.possibleCoins = possibleCoins;
         this.amount = amount;
+
+        possibleCoins.sort(Comparator.reverseOrder());
     }
 
     public void initialize() {

@@ -24,24 +24,27 @@ public class TravellingSalesman extends Pane {
     private List<Circle> cities = new Vector<>();
     private Circle pointedCity;
     private int visitedCities = 0;
+    private Circle startingCity;
+    private Circle previousCity;
 
     // City colors
-    private static final Color HIGHLIGHTED_CITY_COLOR = new Color(0.8,0.8,0.2, 1);
-    private static final Color VISITED_CITY_COLOR = new Color(0.5,0.2,0.2, 1);
-
-    private static final Duration HIGHTLIGHT_FILL_DURATION = Duration.seconds(0.3);
-
+    private static final Color VISITED_CITY_COLOR = new Color(0.2,0.2,0.5, 1);
 
     // Link colors
-    private static final Color DISCARDED_LINK_COLOR = new Color(0.8, 0.8, 0.8, 1);
-    private static final Color POINTED_LINK_COLOR = new Color(0.1, 0.1, 0.1, 1);
-    private static final Color STILL_TO_CONSIDER_LINK_COLOR = new Color(0.6, 0.6, 0.6, 1);
+    private static final double LINK_WIDTH = 3;
+
+    private static final Color DISCARDED_LINK_COLOR = new Color(0.7, 0.15, 0.15, 0.17);
+    private static final Color POINTED_LINK_COLOR = new Color(0.8, 0.8, 0.8, 1);
+    private static final Color STILL_TO_CONSIDER_LINK_COLOR = new Color(0.3, 0.3, 0.3, 1);
     private static final Color OPTIMAL_LINK_COLOR = VISITED_CITY_COLOR;
 
-    private static final Duration LINK_FADE_IN_DURATION = Duration.seconds(1);
-    private static final Duration LINK_FOCUS_IN_DURATION = Duration.seconds(1);
-    private static final Duration LINK_MIN_SWITCH_DURATION = Duration.seconds(1);
-    private static final Duration CHECKED_LINK_FADE_OUT_DURATION = Duration.seconds(1);
+    private static final Duration LINK_FADE_IN_DURATION = Duration.seconds(0.3);
+    private static final Duration LINK_FOCUS_IN_DURATION = Duration.seconds(0.3);
+    private static final Duration LINK_MIN_SWITCH_DURATION = Duration.seconds(0.3);
+    private static final Duration CHECKED_LINK_FADE_OUT_DURATION = Duration.seconds(0.3);
+
+    private static final double CITY_RADIUS = 8;
+    private static final double POINTED_CITY_RADIUS = 12;
 
 
 
@@ -57,7 +60,7 @@ public class TravellingSalesman extends Pane {
     }
 
     public void addCity(double xPos, double yPos) {
-        Circle newCircle = new Circle(xPos, yPos, 5);
+        Circle newCircle = new Circle(xPos, yPos, CITY_RADIUS);
         newCircle.getStyleClass().add("city");
         newCircle.setFill(STILL_TO_CONSIDER_LINK_COLOR);
         mainPane.getChildren().add(newCircle);
@@ -70,17 +73,18 @@ public class TravellingSalesman extends Pane {
 
         SequentialTransition sequentialTransition = new SequentialTransition();
 
+        // Fade in possible links
         FadeTransition temporaryLinksFadeInTransition = new FadeTransition(LINK_FADE_IN_DURATION, temporaryLinkPane);
         temporaryLinksFadeInTransition.setToValue(1);
         sequentialTransition.getChildren().add(temporaryLinksFadeInTransition);
 
-        // Scroll all other cities in order to find the closest one
+
         double minDistance = Double.MAX_VALUE;
         Line minLine = null;
         Circle optimalCity = null;
-
+        // Scroll all other cities in order to find the closest one
         for (Circle otherCity: cities) {
-            if (otherCity!=pointedCity) {
+            if (otherCity!=pointedCity && otherCity!=previousCity) {
                 Line newLine = buildLinkLine(pointedCity.getCenterX(), pointedCity.getCenterY(),
                         otherCity.getCenterX(), otherCity.getCenterY());
 
@@ -102,7 +106,7 @@ public class TravellingSalesman extends Pane {
                     focusInStrokeTransition.setToValue(POINTED_LINK_COLOR);
                     sequentialTransition.getChildren().add(focusInStrokeTransition);
 
-                    PauseTransition afterFocusPauseTransition = new PauseTransition(Duration.seconds(0.5));
+                    PauseTransition afterFocusPauseTransition = new PauseTransition(Duration.seconds(0.2));
                     sequentialTransition.getChildren().add(afterFocusPauseTransition);
 
                     if (distance >= minDistance) {
@@ -134,17 +138,17 @@ public class TravellingSalesman extends Pane {
             }
         }
 
+
         // Highlight optimal city found
         ParallelTransition switchHighlightingTransition = new ParallelTransition();
-
+        switchHighlightingTransition.getChildren().add(buildCityRadiusChangeTimeline(optimalCity, POINTED_CITY_RADIUS));
 
         FillTransition highlightNextCityTransition = new FillTransition(LINK_MIN_SWITCH_DURATION, optimalCity);
-        highlightNextCityTransition.setToValue(HIGHLIGHTED_CITY_COLOR);
+        highlightNextCityTransition.setToValue(VISITED_CITY_COLOR);
         switchHighlightingTransition.getChildren().add(highlightNextCityTransition);
 
-        FillTransition deHighlightOldCityTransition = new FillTransition(LINK_MIN_SWITCH_DURATION, pointedCity);
-        deHighlightOldCityTransition.setToValue(VISITED_CITY_COLOR);
-        switchHighlightingTransition.getChildren().add(deHighlightOldCityTransition);
+        switchHighlightingTransition.getChildren().add(buildCityRadiusChangeTimeline(pointedCity, CITY_RADIUS));
+
 
 
         sequentialTransition.getChildren().add(switchHighlightingTransition);
@@ -166,20 +170,39 @@ public class TravellingSalesman extends Pane {
 
         Circle city = optimalCity;
         sequentialTransition.setOnFinished(event -> {
+            previousCity = pointedCity;
             pointedCity = city;
         });
+
+        if (visitedCities>=cities.size()-1) {
+            Line newLine = buildLinkLine(optimalCity.getCenterX(), optimalCity.getCenterY(),
+                    startingCity.getCenterX(), startingCity.getCenterY());
+            optimalLinksPane.getChildren().add(newLine);
+            newLine.setOpacity(0);
+            newLine.setStroke(OPTIMAL_LINK_COLOR);
+
+            FadeTransition fadeInLastLink = new FadeTransition(LINK_FADE_IN_DURATION, newLine);
+            fadeInLastLink.setToValue(1);
+
+            sequentialTransition.getChildren().add(new ParallelTransition(
+                    fadeInLastLink,
+                    buildCityRadiusChangeTimeline(optimalCity, CITY_RADIUS)
+            ));
+        }
 
         return sequentialTransition;
 
     }
 
     public void reset() {
-
         // Choose randomly a city
         Random random = new Random();
-        pointedCity = cities.get(random.nextInt(cities.size()));
-        pointedCity.setFill(HIGHLIGHTED_CITY_COLOR);
-        
+        reset(random.nextInt(cities.size()));
+
+    }
+
+    public void reset(int startIndex) {
+
         temporaryLinkPane.getChildren().clear();
         optimalLinksPane.getChildren().clear();
 
@@ -188,7 +211,16 @@ public class TravellingSalesman extends Pane {
             city.setFill(STILL_TO_CONSIDER_LINK_COLOR);
         }
 
+        // Choose the city defined by the given index
+        pointedCity = cities.get(startIndex);
+        pointedCity.setFill(VISITED_CITY_COLOR);
+        pointedCity.setRadius(POINTED_CITY_RADIUS);
+        startingCity = pointedCity;
 
+    }
+
+    public int getCityNumber() {
+        return cities.size();
     }
 
     public boolean isDone() {
@@ -198,12 +230,21 @@ public class TravellingSalesman extends Pane {
 
     private Line buildLinkLine(double fromX, double fromY, double toX, double toY) {
         Line newLine = new Line(fromX, fromY, toX, toY);
-        newLine.setStrokeWidth(2);
+        newLine.setStrokeWidth(LINK_WIDTH);
         newLine.getStyleClass().add("link-line");
         return newLine;
     }
 
     private double distance(double fromX, double fromY, double toX, double toY) {
         return Math.sqrt(Math.pow(fromX-toX,2) + Math.pow(fromY - toY,2));
+    }
+
+    private Timeline buildCityRadiusChangeTimeline (Circle city, double radius) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(0.2), new KeyValue(
+                        city.radiusProperty(), radius
+                ))
+        );
+        return timeline;
     }
 }

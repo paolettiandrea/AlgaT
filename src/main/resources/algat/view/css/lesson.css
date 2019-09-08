@@ -46,10 +46,17 @@
 }
 
 .slider .track {
-    -fx-pref-height: 3;
+    -fx-pref-height: 1.5;
+    -fx-background-color: derive(-fx-light-color, 20%);
 }
 
-.custom-interactive-container {
-    -fx-background-color: #d3d2d2;
+.interactive-content-container{
+    -fx-background-color: rgb(215, 220, 213);
     -fx-padding: 10 10 10 10;
+    -fx-border: transparent;
+}
+
+.prompt-text {
+    -fx-font-family: "Space Mono";
+    -fx-font-size: 10;
 }

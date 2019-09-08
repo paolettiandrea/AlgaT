@@ -37,7 +37,7 @@ public class TopicMenuField {
         for (Lesson lesson : topic.getLessonList()) {
             Label lessonMenuButton = new Label(lesson.getName());
             lessonMenuButton.getStyleClass().add("lesson-menu-label");
-            lessonMenuButton.setPadding(new Insets(0, 0, 0, AppViewSettings.menuLessonIndentation));
+            lessonMenuButton.setPadding(new Insets(0, 15, 0, AppViewSettings.menuLessonIndentation));
             lessonMenuButton.setOnMouseClicked(event -> {
 
                 try {

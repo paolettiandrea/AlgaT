@@ -16,14 +16,14 @@ public class OptimalGreedyCoin extends InteractiveContentController {
         super(Duration.seconds(0.5),0.5,3);
 
         Vector<Integer> possibleCoins = new Vector<>();
-        possibleCoins.add(50);
+
 
         possibleCoins.add(10);
-        possibleCoins.add(7);
+        possibleCoins.add(5);
         possibleCoins.add(2);
         possibleCoins.add(1);
 
-        greedy = new GreedyCoin(possibleCoins, 77);
+        greedy = new GreedyCoin(possibleCoins, 39);
 
     }
 
