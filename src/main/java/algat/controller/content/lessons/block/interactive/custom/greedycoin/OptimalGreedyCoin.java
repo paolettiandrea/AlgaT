@@ -17,7 +17,9 @@ public class OptimalGreedyCoin extends InteractiveContentController {
 
         Vector<Integer> possibleCoins = new Vector<>();
         possibleCoins.add(50);
+
         possibleCoins.add(10);
+        possibleCoins.add(7);
         possibleCoins.add(2);
         possibleCoins.add(1);
 

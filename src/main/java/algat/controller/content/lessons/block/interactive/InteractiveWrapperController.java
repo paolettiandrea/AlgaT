@@ -73,15 +73,11 @@ public class InteractiveWrapperController {
 
     @FXML
     public void step() {
-        System.out.println("step");
         initiateStep();
-
     }
 
     @FXML
     public void reset() {
-        System.out.println("reset");
-
         if (isPlayingFlag || autoFlag) {
             singleStepTransition.stop();
             animationStoppingCallback();
@@ -146,6 +142,7 @@ public class InteractiveWrapperController {
 
     private void initiateStep() {
         if (isPlayingFlag) throw new Error("The previous step was already playing");
+        isPlayingFlag = true;
 
         changeControlPanelColor(CONTROL_PANEL_STEPPING_COLOR);
 

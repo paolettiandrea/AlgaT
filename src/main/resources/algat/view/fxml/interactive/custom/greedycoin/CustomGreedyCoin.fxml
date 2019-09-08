@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algat.controller.content.lessons.block.interactive.custom.greedycoin.CustomGreedyCoin">
+   <top>
+      <VBox alignment="TOP_CENTER" fillWidth="false" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="amountTextField" promptText="Valore resto" />
+            <TextField fx:id="possibleCoinListTextField" promptText="Monete possibili" />
+            <Button fx:id="buildButton" mnemonicParsing="false" onAction="#build" text="Button" />
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
