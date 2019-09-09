@@ -37,7 +37,7 @@
                                           <Insets right="5.0" />
                                        </BorderPane.margin>
                                        <cursor>
-                                          <Cursor fx:constant="CLOSED_HAND" />
+                                          <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <styleClass>
                                           <String fx:value="ui-polygon-button" />
@@ -55,7 +55,7 @@
                                           <Insets left="5.0" />
                                        </BorderPane.margin>
                                        <cursor>
-                                          <Cursor fx:constant="CLOSED_HAND" />
+                                          <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Rectangle>
                                  </left>
@@ -90,7 +90,7 @@
                                           <Insets left="5.0" />
                                        </BorderPane.margin>
                                        <cursor>
-                                          <Cursor fx:constant="CLOSED_HAND" />
+                                          <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <styleClass>
                                           <String fx:value="ui-dark" />

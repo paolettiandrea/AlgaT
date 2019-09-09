@@ -37,7 +37,7 @@
                                                 <Region HBox.hgrow="ALWAYS" />
                                                 <Button fx:id="resetButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#reset" styleClass="ui-interactive-control" HBox.hgrow="NEVER">
                                                    <cursor>
-                                                      <Cursor fx:constant="CLOSED_HAND" />
+                                                      <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                    <graphic>
                                                       <StackPane>
@@ -67,17 +67,17 @@
                                                 </Button>
                                                 <StackPane fx:id="autoButtonStackContainer" onMouseClicked="#auto" styleClass="ui-interactive-light-indicator" HBox.hgrow="NEVER">
                                                    <cursor>
-                                                      <Cursor fx:constant="OPEN_HAND" />
+                                                      <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </StackPane>
                                                 <Button fx:id="stepButton" mnemonicParsing="false" onAction="#step" styleClass="ui-interactive-control" HBox.hgrow="NEVER">
                                                    <cursor>
-                                                      <Cursor fx:constant="OPEN_HAND" />
+                                                      <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                    <graphic>
                                                       <Path fill="DODGERBLUE" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="ui-interactive-control">
                                                          <cursor>
-                                                            <Cursor fx:constant="OPEN_HAND" />
+                                                            <Cursor fx:constant="HAND" />
                                                          </cursor>
                                                          <elements>
                                                             <MoveTo x="10.0" y="6.0" />

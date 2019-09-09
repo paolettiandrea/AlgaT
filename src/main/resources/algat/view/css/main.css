@@ -55,7 +55,7 @@
     -fx-font-size: 13;
     -fx-font-family: "Space Mono Bold";
     -fx-text-fill: -fx-lighter-color;
-    -fx-cursor: OPEN_HAND;
+    -fx-cursor: HAND;
 }
 
 .lesson-menu-label:hover {
