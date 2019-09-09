@@ -1,4 +1,5 @@
 #+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+latex_header: \hypersetup{colorlinks=true}
 
 * AlgaT
 AlgaT è un progetto realizzato nell'ambito di un corso di Algoritmi e Strutture Dati.
@@ -86,7 +87,10 @@ argomenti (uno per ogni riga) nell'ordine in cui devono essere rappresentati.
 
 ** Inserire una nuova lezione
 In AlgaT le lezioni sono definite in plain-text files aventi l'estensione /.lesson/. Per inserire una lezione chiamata /lesson1/ per esempio nell'argomento /topic1/
-basta creare il seguente file: ~algat/content/topics/topic1/lesson1.lesson~.
+basta creare il seguente file: 
+
+~algat/content/topics/topic1/lesson1.lesson~.
+
 Come per gli argomenti anche per le lezioni è necessario specificare un ordine di rappresentazione. Tale ordine è espresso tramite un file ~order.algat~ in ogni
 cartella topic. Tale file conterrà per ogni riga il nome di una lezione appartenente al topic (*senza estensione*) nell'ordine in cui devono essere rappresentate.
 
@@ -94,7 +98,7 @@ Ricordare perciò di aggiornare il file ~order.algat~ quando si crea una nuova l
 
 Al caricamento di una lezione intervengono una serie di parser che interpretano una semplice sintassi ispirata al /markdown/.
 
-I *blocchi* sono definiti da una linea avente un /header/ preceduto da un certo numero di caratteri ~#~. Il numero di ~#~ definisce la profondità del blocco
+I *blocchi* sono definiti da una linea avente un /header/ preceduto da un certo numero di caratteri ~#~. Il numero di ~#~ definisce la potenziale profondità del blocco
  nell'albero e il blocco considerato risulterà figlio del blocco precedente avente profondità minore. Sarà considerato contenuto di tale blocco tutto ciò che è espresso
 tra l'header considerato e quello successivo. L'albero di blocchi ha una radice "virtuale" (non avente titolo), il cui contenuto sarà tutto ciò che è espresso prima del primo header.
 

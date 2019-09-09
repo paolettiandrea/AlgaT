@@ -65,7 +65,7 @@ public class Lesson {
         InputStream inStream = App.class.getResourceAsStream(lessonResourceName);           // Assumes that the App class stays at the root of the classpath
         if (inStream != null) {
             try {
-                BufferedReader br = new BufferedReader(new InputStreamReader(inStream));
+                BufferedReader br = new BufferedReader(new InputStreamReader(inStream, "UTF-8"));
 
                 String line = br.readLine();
                 String fileContent = "";
