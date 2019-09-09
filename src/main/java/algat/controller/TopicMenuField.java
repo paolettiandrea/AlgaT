@@ -50,7 +50,7 @@ public class TopicMenuField {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.out.println("ERROR:failed to load the TopicMenuField");
+                    System.out.println("ERROR:failed to load the LessonPanel");
                 }
 
             });

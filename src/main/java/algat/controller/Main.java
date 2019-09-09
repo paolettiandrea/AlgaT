@@ -1,6 +1,7 @@
 package algat.controller;
 
 import algat.controller.content.ContentPanel;
+import algat.controller.content.lessons.LessonPanel;
 import algat.model.AppContent;
 import algat.model.Topic;
 import javafx.animation.*;
@@ -8,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Polygon;
@@ -88,6 +90,19 @@ public class Main {
                 e.printStackTrace();
                 System.out.println("ERROR:failed to load the TopicMenuField");
             }
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/algat/view/fxml/content/lessons/LessonPanel.fxml"));
+            AnchorPane newLessonPane = loader.load();
+            LessonPanel newLessonController = loader.getController();
+
+            newLessonController.loadLesson(data.getTopicList().get(0).getLessonList().get(0));
+            contentPanelController.changeContent(newLessonPane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("ERROR:failed to load the LessonPanel");
         }
     }
 
