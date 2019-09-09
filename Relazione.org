@@ -1,4 +1,4 @@
-#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage[margin=1.5in]{geometry}
 #+latex_header: \hypersetup{colorlinks=true}
 
 * AlgaT
