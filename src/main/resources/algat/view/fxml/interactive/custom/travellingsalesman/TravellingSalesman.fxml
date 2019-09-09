@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import java.net.URL?>
+<fx:root id="background" fx:id="mainPane" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="300.0" prefWidth="450.0" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="temporaryLinkPane" />
+      <Pane fx:id="optimalLinksPane" />
+   </children>
+   <stylesheets>
+      <URL value="@travellingsalesman.css" />
+   </stylesheets>
+</fx:root>

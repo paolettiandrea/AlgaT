@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<ScrollPane fitToWidth="true" minHeight="-Infinity" minWidth="-Infinity" pannable="true" styleClass="interactive-wrapper-scrollpane" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algat.controller.content.lessons.block.interactive.InteractiveWrapperController">
+  <content>
+    <AnchorPane styleClass="interactive-wrapper-support-anchorpane">
+         <children>
+            <StackPane styleClass="interactive-wrapper-support-stackpane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <BorderPane fx:id="borderPane" styleClass="interactive-wrapper-borderpane">
+                     <bottom>
+                        <StackPane BorderPane.alignment="CENTER">
+                           <children>
+                              <Path fx:id="controlPanelBackgroundShape" fill="DODGERBLUE" stroke="DODGERBLUE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="10.0" translateY="-8.0">
+                                 <elements>
+                                    <MoveTo x="130.0" />
+                                    <LineTo x="100.0" y="40.0" />
+                                    <LineTo x="30.0" y="40.0" />
+                                    <LineTo />
+                                 </elements>
+                              </Path>
+                              <AnchorPane>
+                                 <children>
+                                    <BorderPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <bottom>
+                                          <Slider fx:id="speedSlider" maxWidth="-Infinity" prefWidth="50.0" snapToTicks="true" BorderPane.alignment="CENTER" />
+                                       </bottom>
+                                       <center>
+                                          <HBox BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="resetButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#reset" styleClass="ui-interactive-control" HBox.hgrow="NEVER">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <graphic>
+                                                      <StackPane>
+                                                         <children>
+                                                            <Path fill="DODGERBLUE" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="ui-interactive-control" translateX="-6.0">
+                                                               <elements>
+                                                                  <MoveTo x="2.0" y="6.0" />
+                                                                  <LineTo x="10.0" />
+                                                                  <LineTo x="10.0" y="12.0" />
+                                                                  <ClosePath />
+                                                               </elements>
+                                                            </Path>
+                                                            <Path fill="DODGERBLUE" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="ui-interactive-control">
+                                                               <elements>
+                                                                  <MoveTo x="2.0" y="6.0" />
+                                                                  <LineTo x="10.0" />
+                                                                  <LineTo x="10.0" y="12.0" />
+                                                                  <ClosePath />
+                                                               </elements>
+                                                            </Path>
+                                                         </children>
+                                                      </StackPane>
+                                                   </graphic>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <StackPane fx:id="autoButtonStackContainer" onMouseClicked="#auto" styleClass="ui-interactive-light-indicator" HBox.hgrow="NEVER">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </StackPane>
+                                                <Button fx:id="stepButton" mnemonicParsing="false" onAction="#step" styleClass="ui-interactive-control" HBox.hgrow="NEVER">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <graphic>
+                                                      <Path fill="DODGERBLUE" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" styleClass="ui-interactive-control">
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                         <elements>
+                                                            <MoveTo x="10.0" y="6.0" />
+                                                            <LineTo />
+                                                            <LineTo y="12.0" />
+                                                            <ClosePath />
+                                                         </elements>
+                                                      </Path>
+                                                   </graphic>
+                                                </Button>
+                                                <Region HBox.hgrow="ALWAYS" />
+                                             </children>
+                                          </HBox>
+                                       </center>
+                                    </BorderPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </StackPane>
+                     </bottom>
+                     <center>
+                        <BorderPane fx:id="customContentContainer" styleClass="interactive-content-container" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </StackPane>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>

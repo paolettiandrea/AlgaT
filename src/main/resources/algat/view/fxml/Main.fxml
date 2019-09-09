@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import java.lang.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algat.controller.Main">
     <children>
         <SplitPane fx:id="mainSplitPane" dividerPositions="0.27759197324414714" layoutY="9.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <AnchorPane minWidth="0.0">
+                <AnchorPane minWidth="0.0" SplitPane.resizableWithParent="false">
                     <children>
-                        <VBox prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                        <AnchorPane fx:id="sideTopBar" minHeight="-Infinity" prefHeight="40.0">
+                                  <VBox fx:id="topicNavigationVBox" styleClass="sideMenu" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                        <AnchorPane fx:id="sideBotBar" minHeight="-Infinity" prefHeight="30.0" styleClass="dark-bar">
                            <children>
-                              <BorderPane maxHeight="40.0" prefHeight="40.0" styleClass="dark-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <left>
-                                    <Label minHeight="40.0" styleClass="dark-bar" text="AlgaT" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <BorderPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </BorderPane.margin>
-                                    </Label>
-                                 </left>
+                              <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <right>
-                                    <ImageView fx:id="collapseButtonIV" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#collapseSidebar" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                       <cursor>
-                                          <Cursor fx:constant="OPEN_HAND" />
-                                       </cursor>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                       <image>
-                                          <Image url="@../images/play-arrow.png" />
-                                       </image>
+                                    <Polygon id="collapse-sidebar-button" fx:id="collapseButtonShape" fill="#1f93ff00" onMouseClicked="#collapseSidebar" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" BorderPane.alignment="CENTER">
+                                      <points>
+                                        <Double fx:value="-50.0" />
+                                        <Double fx:value="40.0" />
+                                        <Double fx:value="50.0" />
+                                        <Double fx:value="40.0" />
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="-60.0" />
+                                      </points>
                                        <BorderPane.margin>
                                           <Insets right="5.0" />
                                        </BorderPane.margin>
-                                    </ImageView>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="ui-polygon-button" />
+                                          <String fx:value="ui-light" />
+                                       </styleClass>
+                                    </Polygon>
                                  </right>
+                                 <left>
+                                    <Rectangle id="fullscreen-button" fx:id="fullscreenButton" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="17.0" onMouseClicked="#toggleFullscreen" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" width="22.0" BorderPane.alignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="ui-polygon-button" />
+                                          <String fx:value="ui-light" />
+                                       </styleClass>
+                                       <BorderPane.margin>
+                                          <Insets left="5.0" />
+                                       </BorderPane.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Rectangle>
+                                 </left>
                               </BorderPane>
-                           </children>
-                        </AnchorPane>
-                                <AnchorPane prefHeight="20000.0">
-                                    <children>
-                                        <VBox fx:id="topicNavigationVBox" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    </children>
-                                </AnchorPane>
-                        <AnchorPane fx:id="sideBotBar" minHeight="-Infinity" prefHeight="20.0" styleClass="dark-bar" />
+                           </children></AnchorPane>
                             </children>
                         </VBox>
                     </children>
@@ -65,30 +69,37 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane fx:id="mainTopBar" minHeight="-Infinity" prefHeight="40.0">
+                        <AnchorPane id="main-content-container-pane" prefHeight="20000.0">
                            <children>
-                              <BorderPane styleClass="light-bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                               <fx:include fx:id="contentPanel" source="content/ContentPanel.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children></AnchorPane>
+                        <AnchorPane id="light-bar" fx:id="mainBotBar" minHeight="-Infinity" prefHeight="30.0" styleClass="light-bar">
+                           <children>
+                              <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <left>
-                                    <ImageView fx:id="expandButtonIV" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#expandSidebar" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@../images/play-arrow.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
+                                    <Polygon id="expand-sidebar-button" fx:id="expandButtonShape" fill="#1f93ff00" onMouseClicked="#expandSidebar" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" BorderPane.alignment="CENTER">
+                                      <points>
+                                        <Double fx:value="0.86602540" />
+                                        <Double fx:value="-0.5" />
+                                        <Double fx:value="50.0" />
+                                        <Double fx:value="40.0" />
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="-60.0" />
+                                      </points>
                                        <BorderPane.margin>
                                           <Insets left="5.0" />
                                        </BorderPane.margin>
-                                    </ImageView>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <styleClass>
+                                          <String fx:value="ui-dark" />
+                                          <String fx:value="ui-polygon-button" />
+                                       </styleClass>
+                                    </Polygon>
                                  </left>
                               </BorderPane>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="20000.0">
-                           <children>
-                               <fx:include fx:id="contentPanel" source="ContentPanel.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children></AnchorPane>
-                        <AnchorPane id="light-bar" fx:id="mainBotBar" minHeight="-Infinity" prefHeight="20.0" styleClass="light-bar" />
                      </children>
                   </VBox>
                </children></AnchorPane>

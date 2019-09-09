@@ -1,0 +1,152 @@
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+latex_header: \hypersetup{colorlinks=true}
+
+* AlgaT
+AlgaT è un progetto realizzato nell'ambito di un corso di Algoritmi e Strutture Dati.
+
+E' una applicazione grafica standalone basata su JavaFX, il cui scopo è illustrare concetti inerenti a tale corso tramite simulazioni interattive ed informazioni contestuali.
+L' applicazione permette anche di rispondere a domande di autoapprendimento legate ai concetti illustrati.
+
+
+
+* Interfaccia principale
+L'interfaccia principale è molto semplice ed è costituita da un menu laterale ed un pannello principale.
+
+** Menu Laterale 
+Qui l'utente può selezionare le lezioni, che sono raggruppate in /argomenti/ e organizzate nell'ordine definito dai file /algat.order/ (approfondito in seguito).
+
+Se ad una data lezioni sono associate delle domande il menu laterale permette anche di accedere al quiz corrispondente a tale lezione.
+
+** Pannello principale
+Questo è il pannello destinato ad ospitare i veri e propri contenuti dell'applicazione: le *lezioni* ed i *quiz*.
+
+* Contenuti
+I contenuti veri e propri dell'applicazione sono i quiz e le lezioni. Queste ultime sono organizzate in argomenti (~Topic~), che hanno l'unica funzione di
+permettere un organizzazione in macroargomenti nel menu laterale.
+
+** Lezioni
+ Si è deciso di allargare il concetto di lezione oltre alla simulazione interattiva. In questa implementazione di AlgaT
+ una lezione è costituita da *blocchi* titolati che possono contenere sia simulazioni interattive che
+ informazioni contestuali sotto forma di testo o immagini.
+
+ Un blocco è costituito da un /titolo/, da una lista di /contenuti/ e da una lista di /blocchi figli/.
+ Una lezione è dunque di fatto un albero di blocchi che può essere scorso ricorsivamente tramite visita in preordine
+ per generare una rappresentazione della lezione. In tale rappresentazione sarà prima mostrato il titolo, poi i contenuti
+ e solo alla fine i blocchi figli.
+
+*** Contenuto di un blocco
+I contenuti di un blocco implementano un interfaccia ~BlockContent~ che permette una facile aggiunta di nuovi tipi di contenuti.
+
+Al momento i contenuti possibili sono:
+
+**** *Immagini*
+Semplici immagini rappresentate alla loro risoluzione originale.
+
+**** *Pannelli interattivi*
+Pannelli interattivi espressi da un file /.fxml/. A tale file fxml deve essere associato un /fx:controller/ che eredita
+dalla classe astratta ~InteractiveContentController~.
+Questo perchè ogni pannello interattivo viene racchiuso in un wrapper che media l'interazione
+con l'utente fornendo alcuni semplici comandi:
+- *reset*: resetta il pannello interattivo allo stato iniziale
+- *step*: effettua uno step di esecuzione dell'algoritmo rappresentato.
+
+Dalla prospettiva di un ~InteractiveContentController~ effettuare uno step significa generare una ~Animation~ che sarà
+poi eseguita dal wrapper.
+
+**** *Paragrafi*
+Contengono elementi testuali di vari tipi, illustrati in seguito.
+ 
+*** Contenuto di un paragrafo
+In maniera analoga ai blocchi il contenuto di un paragrafo deve estendere la
+classe astratta ~ParagraphContent~. Nell' aggiunta di nuovi tipi di ParagraphContent sarà necessario tenere conto che il layout
+del nodo generato sarà gestito da un elemento ~TextFlow~, pertanto alla base della struttura generata dovrà esserci
+un nodo gestibile da tale layout manager.
+
+I contenuti possibili sono:
+
+**** *Testo stilizzato*
+AlgaT supporta alcuni semplici stili (*bold* /italic/ ed /*entrambi*/), pertanto divide il testo di un paragrafo in porzioni aventi stile uniforme (~TextChunk~).
+
+**** *Hyperlinks*
+E' possibile aggiungere link a pagine web che vengono aperte dal browser di default. I link supportano gli stessi stili precedentemente indicati.
+
+** Quiz
+I quiz sono liste di domande di autoapprendimento associate ad una specifica lezione. Possono avere un numero arbitrario di risposte sbagliate, ma almeno una risposta giusta. Proprio in virtù del numero di risposte giuste si dividono in:
+- *domande a risposta singola*: una sola delle possibili risposte è giusta.
+- *domande a risposta multipla*: due o più delle risposte possibili sono giuste. Per poter continuare l'utente deve selezionare tutte le risposte giuste e nessuna di quelle errate.
+
+* Inserimento di contenuti
+Si è scelto di rendere l'inserimento di nuove lezioni in AlgaT il più semplice possibile. Ciò avviene tramite l'inserimento di specifici file e cartelle all'interno di ~algat/content~.
+
+** Inserire un nuovo argomento
+Per inserire un nuovo argomento basta creare una nuova cartella in ~algat/content/topics~. Il nome della cartella creata sarà il nome dell'argomento e le lezioni contenute
+in tale cartella apparterranno al nuovo argomento.
+
+Ogni cartella argomento deve contenere un file ~algat.order~ funzionale a specificare l'ordine degli argomenti nel menu laterale. Tale file deve contenere i nomi degli
+argomenti (uno per ogni riga) nell'ordine in cui devono essere rappresentati.
+
+** Inserire una nuova lezione
+In AlgaT le lezioni sono definite in plain-text files aventi l'estensione /.lesson/. Per inserire una lezione chiamata /lesson1/ per esempio nell'argomento /topic1/
+basta creare il seguente file: 
+
+~algat/content/topics/topic1/lesson1.lesson~.
+
+Come per gli argomenti anche per le lezioni è necessario specificare un ordine di rappresentazione. Tale ordine è espresso tramite un file ~order.algat~ in ogni
+cartella topic. Tale file conterrà per ogni riga il nome di una lezione appartenente al topic (*senza estensione*) nell'ordine in cui devono essere rappresentate.
+
+Ricordare perciò di aggiornare il file ~order.algat~ quando si crea una nuova lezione, o di crearlo se è la prima lezione di un dato argomento.
+
+Al caricamento di una lezione intervengono una serie di parser che interpretano una semplice sintassi ispirata al /markdown/.
+
+I *blocchi* sono definiti da una linea avente un /header/ preceduto da un certo numero di caratteri ~#~. Il numero di ~#~ definisce la potenziale profondità del blocco
+ nell'albero e il blocco considerato risulterà figlio del blocco precedente avente profondità minore. Sarà considerato contenuto di tale blocco tutto ciò che è espresso
+tra l'header considerato e quello successivo. L'albero di blocchi ha una radice "virtuale" (non avente titolo), il cui contenuto sarà tutto ciò che è espresso prima del primo header.
+
+*** BlockContent
+Tra un header e un altro tutto ciò che è separato da una linea vuota è considerato un oggetto ~BlockContent~ a sè.
+
+Tramite la sintassi speciale  ~< CONTENTTYPE (PARAMETER) (PATH) >~ è possibile definire BlockContent speciali come /pannelli interattivi/ e /immagini/ (si veda cheatsheet).
+
+Se invece dopo una linea vuota vi sono normali elementi testuali il parser interpreta ciò che segue come un paragrafo.
+
+*** ParagraphContent
+Un paragrafo può essere semplicemente una stringa di testo. AlgaT supporta però anche la stilizzazione tramite caratteri speciali:
+- *bold*: ~^~
+- /italic/: ~*~
+
+E' anche possibile inserire all'interno di un paragrafo speciali elementi ~ParagraphContent~
+con una sintassi simile a quella vista in precedenza: ~{ CONTENTTYPE (PARAMETER) (PATH) }~.
+
+** Inserire un quiz
+Come le lezioni anche i quiz sono definiti in plain-text files, questa volta aventi l'estensione /.quiz/. Se volessimo per esempio aggiungere un quiz associato
+alla lezione /lesson1/ creata in precedenza basterebbe creare un file ~algat/content/topics/topic1/lesson1.quiz~. Un quiz deve essere sempre associato a una lezione, pertanto dovrà avere lo
+stesso nome di una lezione già presente nella cartella.
+
+In questi file ogni domanda deve essere separata da una linea contenente i caratteri ~---~. Questi caratteri non devono però precedere la prima domanda e seguire l'ultima.
+
+Le domande saranno mostrate all'utente nello stesso ordine in cui sono definite nei file /.quiz/.
+
+*** Definire una domanda
+Una domanda in un file /.quiz/ è definita nella seguente maniera:
+- Tutto ciò che precede le possibili risposte è parsato come una normale serie di paragrafi e costituisce la domanda.
+- Ogni riga successiva definisce una possibile risposta e deve iniziare con ~[o]~ per le risposte giuste e ~[x]~ per le risposte sbagliate.
+
+Come detto in precedenza a seconda del numero di risposte giuste l'applicazione interpreterà tale domanda come a risposta multipla o meno.
+
+* Cheatsheet
+
+| ~Block content~ | Funzione                            | Sintassi                            |
+|-----------------+-------------------------------------+-------------------------------------|
+| ~Paragraph~     | Mostra contenuti testuali           | ~Simple *text* with some ^styling^~ |
+| ~Interactive~   | Wrapper per una fnestra interattiva | ~< interactive () [path] >~  |
+| ~Image~         | Mostra una immagine                 | ~< image (caption) [path] >~        |
+
+| ~ParagraphContent~ | Funzione                             | Sintassi                 |
+|--------------------+--------------------------------------+--------------------------|
+| ~TextChunk~        | Porzione di testo con stile uniforme | ~*text*~                 |
+| ~Hyperlink~        | Mostra un link cliccabile            | ~{ link (head) [path] }~ |
+
+
+
+
+
