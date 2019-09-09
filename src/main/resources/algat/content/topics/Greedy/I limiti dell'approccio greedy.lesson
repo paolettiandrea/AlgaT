@@ -1,13 +1,13 @@
-
 Forse sperimentando con il problema del resto ti sarai accorto che non sempre l'algoritmo illustrato raggiunge una soluzione ottimale.
 
 ## Soluzione non ottimale al problema del resto
 
 Prendiamo per esempio lo stesso algoritmo applicato a questi valori:
 
-(problema del resto unoptimal)
+< interactive () [view/fxml/interactive/custom/greedycoin/UnoptimalGreedyCoin.fxml] >
 
-
+E' evidente che non viene raggiunta la soluzione ottimale, il nostro algoritmo non si rende conto aggiungendo una moneta da 10 in meno
+(una soluzione localmente non ottima) potrebbe raggungere una soluzione globale migliore.
 
 ## Il commesso viaggiatore
 
@@ -40,9 +40,9 @@ che il problema può essere ridotto a una sequenza di scelte *greedy* ottime.
 La soluzione globale ottima del problema contiene al suo interno le soluzioni ottime dei suoi sottoproblemi.
 
 
+## Commesso viaggiatore per valori arbitrari
 
-
-## Custom wrapper
+Prova a sperimentare con l'algoritmo appena illustrato, vedendo quando e come fallisce nell'ottenere risultati ottimali.
 
 < interactive () [view/fxml/interactive/custom/travellingsalesman/TravellingSalesmanCustomWrapper.fxml] >
 

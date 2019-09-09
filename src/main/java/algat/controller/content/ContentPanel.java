@@ -20,7 +20,6 @@ public class ContentPanel {
 
     public void initialize() {
 
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/algat/view/fxml/content/welcome/WelcomePanel.fxml"));
             AnchorPane welcomePane = loader.load();

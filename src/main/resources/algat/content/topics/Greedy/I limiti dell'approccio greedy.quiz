@@ -1,3 +1,10 @@
+Tramite un approccio greedy si può sempre raggiungere una soluzione ottimale al problema del resto:
+
+[o] Falso
+[x] Vero
+
+---
+
 Nel problema del commesso viaggiatore la soluzione ottimale è:
 
 [o] Quella la cui strada percorsa è minima
@@ -7,9 +14,27 @@ Nel problema del commesso viaggiatore la soluzione ottimale è:
 
 ---
 
-Cosa si intende per sottostruttura ottima
+Per il commesso viaggiatore greedy la città con maggiore appetibilità è:
 
-[o] sadsad
-[x] dffsdg sgdf
+[o] Quella più vicina, ma ancora non visitata
+[x] Quella più vicina
+[x] Quella più lontana
+[x] Quella più vicina alla prima città visitata
+
+---
+
+Un algoritmo greedy:
+
+[o] Non necessariamente raggiunge una soluzione ottimale
+[x] Raggiunge sempre una soluzione ottimale
+
+---
+
+Che caratteristiche deve avere un problema perchè si possa raggiungere sempre la soluzione ottimale tramite un approccio greedy?
+
+[o] Scelta greedy
+[o] Sottostruttura ottima
+[x] Semplicità
+[x] Deve essere affrontabile ricorsivamente
 
 

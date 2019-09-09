@@ -6,14 +6,6 @@ Il paradigma algoritmico greedy privilegia:
 
 ---
 
-Quale detto più si avvicina all'approccio greedy?
-
-[o] *"Meglio un uovo oggi che una gallina domani"*
-[x] *"Non è tutto oro quello che luccica"*
-[x] *"Da cosa nasce cosa"*
-
----
-
 Nel problema del resto per un algoritmo greedy la moneta più appetibile è:
 
 [o] Quella con il valore più alto
@@ -35,4 +27,12 @@ Quali sono i vantaggi dell'approccio greedy?
 
 [o] Efficienza
 [o] Semplicità
-[x] Soluzione sempre ottimale
+[x] Completezza (esplora l'intero spazio delle soluzioni)
+
+---
+
+Quale detto più si avvicina all'approccio greedy?
+
+[o] *"Meglio un uovo oggi che una gallina domani"*
+[x] *"Non è tutto oro quello che luccica"*
+[x] *"Da cosa nasce cosa"*

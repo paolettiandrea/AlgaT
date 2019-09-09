@@ -31,18 +31,29 @@ public class BlockDisplayer {
         populateChildBlocks(block);
     }
 
+    /**
+     * Clear the Block
+     */
     public void clear () {
         blockTitleLabel.setText("Title Label");
         actualContentVBox.getChildren().clear();
         childBlocksVBox.getChildren().clear();
     }
 
+    /**
+     * Populates the block content
+     * @param block
+     */
     private void populateActualContent(Block block) {
         for (BlockContent content: block.getActualContent()) {
             actualContentVBox.getChildren().add(content.assemble());
         }
     }
 
+    /**
+     * Populates the block with its child blocks
+     * @param block
+     */
     private void populateChildBlocks(Block block) {
         for (Block childBlock: block.getChildBlocks()) {
             try {

@@ -12,13 +12,12 @@ L' applicazione permette anche di rispondere a domande di autoapprendimento lega
 L'interfaccia principale è molto semplice ed è costituita da un menu laterale ed un pannello principale.
 
 ** Menu Laterale 
-Qui l'utente può selezionare le lezioni, che sono raggruppate in /argomenti/ e organizzate nell'ordine definito dai file /algat.order/.
+Qui l'utente può selezionare le lezioni, che sono raggruppate in /argomenti/ e organizzate nell'ordine definito dai file /algat.order/ (approfondito in seguito).
 
 Se ad una data lezioni sono associate delle domande il menu laterale permette anche di accedere al quiz corrispondente a tale lezione.
 
 ** Pannello principale
 Questo è il pannello destinato ad ospitare i veri e propri contenuti dell'applicazione: le *lezioni* ed i *quiz*.
-
 
 * Contenuti
 I contenuti veri e propri dell'applicazione sono i quiz e le lezioni. Queste ultime sono organizzate in argomenti (~Topic~), che hanno l'unica funzione di
@@ -40,10 +39,10 @@ I contenuti di un blocco implementano un interfaccia ~BlockContent~ che permette
 Al momento i contenuti possibili sono:
 
 **** *Immagini*
-Semplici immagini
+Semplici immagini rappresentate alla loro risoluzione originale.
 
 **** *Pannelli interattivi*
-Pannelli interattivi espressi da un file /.fxml/. A tale file fxml deve essere associato un fx:controller che eredita
+Pannelli interattivi espressi da un file /.fxml/. A tale file fxml deve essere associato un /fx:controller/ che eredita
 dalla classe astratta ~InteractiveContentController~.
 Questo perchè ogni pannello interattivo viene racchiuso in un wrapper che media l'interazione
 con l'utente fornendo alcuni semplici comandi:
@@ -54,7 +53,7 @@ Dalla prospettiva di un ~InteractiveContentController~ effettuare uno step signi
 poi eseguita dal wrapper.
 
 **** *Paragrafi*
-Contengono elementi testuali d i vari tipi.
+Contengono elementi testuali di vari tipi, illustrati in seguito.
  
 *** Contenuto di un paragrafo
 In maniera analoga ai blocchi il contenuto di un paragrafo deve estendere la
@@ -126,7 +125,7 @@ Le domande saranno mostrate all'utente nello stesso ordine in cui sono definite 
 *** Definire una domanda
 Una domanda in un file /.quiz/ è definita nella seguente maniera:
 - Tutto ciò che precede le possibili risposte è parsato come una normale serie di paragrafi e costituisce la domanda.
-- Ogni riga successiva definisce una possibile risposta e deve iniziare con ~[o]~ per le resposte giuste e ~[x]~ per le risposte sbagliate.
+- Ogni riga successiva definisce una possibile risposta e deve iniziare con ~[o]~ per le risposte giuste e ~[x]~ per le risposte sbagliate.
 
 Come detto in precedenza a seconda del numero di risposte giuste l'applicazione interpreterà tale domanda come a risposta multipla o meno.
 

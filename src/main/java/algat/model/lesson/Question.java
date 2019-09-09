@@ -16,7 +16,6 @@ public class Question {
     public Question(String toBeParsed) {
         toBeParsed = toBeParsed.trim();
 
-
         int firstAnswerOccurrence = Math.min(
                 toBeParsed.indexOf(CORRECT_ANSWER_STRING), toBeParsed.indexOf(WRONG_ANSWER_STRING));
 

@@ -18,21 +18,25 @@ quante e quali monete dovrà dare al cliente per raggiungere la somma utilizzand
 ## Il criterio di appetibilità
 
 Il problema del resto ci permette di notare una caratteristica degli algoritmi greedy,
-notiamo infatti che la lista di monete possibili è ordinata in ordine decrescente.
+vediamo infatti come la lista di monete possibili sia ordinata in ordine decrescente.
 
 Questo perchè è molto comune negli in questi algoritmi un iniziale ordinamento in base ad un ^criterio di appetibilità^
 a seguito del quale è possibile costruire la soluzione in maniera incrementale attraverso l'aggiunta dell'elemento più
 appetibile possibile passo dopo passo.
 
-E' proprio il caso del nostro esempio, dove l'appetibilità di una moneta è tanto maggiore tanto più sarà alto il suo
-valore, poichè si assume che un valore più alto permetta di raggiungere il valore target più velocemente, con l'utilizzo di meno monete.
+E' proprio il caso del nostro esempio, dove ^l'appetibilità di una moneta è tanto maggiore tanto più sarà alto il suo
+valore^, poichè si assume che un valore più alto permetta di raggiungere il valore target più velocemente, con l'utilizzo di meno monete.
 Questa è un'euristica intuitivamente ragionevole, che porta una seria di vantaggi, ma che ha anche grandi limiti (che saranno affrontati nella prossima lezione).
 
 ## Vantaggi
 
+Ora che abbiamo più chiaro in cosa consista un algoritmo greedy possiamo intuire alcuni grandi vantaggi di questo
+tipo di approccio.
+
 #### Semplicità
 
-Gli algoritmi greedy risultano spesso intuitivi ed eleganti, spesso basta comprenderne il criterio di appetibilità.
+Gli algoritmi greedy risultano spesso chiari ed eleganti, spesso basta comprendere il criterio
+di scelta locale per intuire il senso dell'algoritmo.
 
 #### Efficienza
 L'approccio greedy permette di non esplorare l'intero spazio delle soluzioni di un problema.

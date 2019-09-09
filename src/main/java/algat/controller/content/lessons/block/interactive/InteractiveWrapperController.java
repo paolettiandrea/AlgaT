@@ -43,7 +43,7 @@ public class InteractiveWrapperController implements InteractiveWrapperInterface
 
     private final Duration CONTROL_PANEL_FILL_CHANGE_DURATION = Duration.seconds(0.3);
     private final Color CONTROL_PANEL_STEPPING_COLOR = new Color(0.7, 0.9, 0.6, 1);
-    private final Color CONTROL_PANEL_PAUSE_COLOR = new Color(0.8, 0.8, 0.5, 1);
+    private final Color CONTROL_PANEL_PAUSE_COLOR = new Color(0.8, 0.7, 0.3, 1);
     private final Color CONTROL_PANEL_INACTIVE_COLOR = new Color(0.7, 0.7, 0.7, 1);
 
 
