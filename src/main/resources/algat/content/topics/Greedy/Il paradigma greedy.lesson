@@ -4,13 +4,13 @@ Greedy è un paradigma algoritmico applicato a problemi di ottimizzazione la cui
 
 La caratteristica fondamentale di tale paradigma è l'ottenimento di una soluzione globale tramite la scelta di
 soluzioni ^localmente ottime^ ad ogni passo di tale sequenza. Da questo il termine *greedy*, traducibile come
-*goloso*, ma anche *avido*. Può essere riassunto con il detto *meglio un uovo oggi che una gallina domani*.
+*goloso*, ma anche *avido*.
 
 ## Il problema del resto
 
 Il classico esempio utilizzato per illustrare un algoritmo greedy e alcune sue proprietà è quello del resto:
 
-Un cassiere deve dare una certa somma di resto a un cliente. Ha a disposizione un elenco di monete possibili,
+Un cassiere deve dare una certa somma a un cliente. Ha a disposizione un elenco di monete possibili,
 quante e quali monete dovrà dare al cliente per raggiungere la somma utilizzandone il minor numero possibile?
 
 < interactive () [view/fxml/interactive/custom/greedycoin/OptimalGreedyCoin.fxml] >
@@ -18,9 +18,9 @@ quante e quali monete dovrà dare al cliente per raggiungere la somma utilizzand
 ## Il criterio di appetibilità
 
 Il problema del resto ci permette di notare una caratteristica degli algoritmi greedy,
-vediamo infatti che la lista di monete possibili è ordinata in ordine decrescente.
+notiamo infatti che la lista di monete possibili è ordinata in ordine decrescente.
 
-Questo perchè è molto comune negli algoritmi greedy un ordinamento in base ad un ^criterio di appetibilità^
+Questo perchè è molto comune negli in questi algoritmi un iniziale ordinamento in base ad un ^criterio di appetibilità^
 a seguito del quale è possibile costruire la soluzione in maniera incrementale attraverso l'aggiunta dell'elemento più
 appetibile possibile passo dopo passo.
 
@@ -28,20 +28,20 @@ E' proprio il caso del nostro esempio, dove l'appetibilità di una moneta è tan
 valore, poichè si assume che un valore più alto permetta di raggiungere il valore target più velocemente, con l'utilizzo di meno monete.
 Questa è un'euristica intuitivamente ragionevole, che porta una seria di vantaggi, ma che ha anche grandi limiti (che saranno affrontati nella prossima lezione).
 
-
 ## Vantaggi
 
 #### Semplicità
 
-Gli algoritmi greedy risultano spesso intuitivi ed eleganti. Basta comprendere il criterio di scelta locale
+Gli algoritmi greedy risultano spesso intuitivi ed eleganti, spesso basta comprenderne il criterio di appetibilità.
 
 #### Efficienza
 L'approccio greedy permette di non esplorare l'intero spazio delle soluzioni di un problema.
-Questo rende tali algoritmi in genere più efficienti, oltre ad essere una buona euristica per la risoluzione di
-problemi complessi dove l'esplorazione dell'intero spazio delle soluzioni non è pratica, o addirittura impossibile.
+Questo rende tali algoritmi in genere più efficienti, oltre ad essere una buona strategia laddove tale esplorazione non è pratica, o addirittura impossibile.
 
-##
+## Il problema del resto per valori arbitrari
 
-Si invita lo studente ad applicare lo stesso algoritmo a valori differenti, verificando l'ottimalità della soluzione:
+Si invita lo studente ad applicare lo stesso algoritmo a valori differenti, verificando l'ottimalità della soluzione.
 
 < interactive () [view/fxml/interactive/custom/greedycoin/CustomGreedyCoin.fxml] >
+
+

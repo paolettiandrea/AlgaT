@@ -1,14 +1,38 @@
-Il paradigma algoritmico greedy si basa su:
+Il paradigma algoritmico greedy privilegia:
 
-[o] This is one possible answer (correct)
-[x] This is another one, the second.
-[x] This is a third
-[x] This is a fourth
-[x] This is a fifth
+[o] Scelte localmente ottime
+[x] Scelte globalmente ottime
+[x] L'esplorazione dell'intero spazio delle soluzioni
 
 ---
 
-This is another question
+Quale detto più si avvicina all'approccio greedy?
 
-[o] sadsad
-[x] dffsdg sgdf
+[o] *"Meglio un uovo oggi che una gallina domani"*
+[x] *"Non è tutto oro quello che luccica"*
+[x] *"Da cosa nasce cosa"*
+
+---
+
+Nel problema del resto per un algoritmo greedy la moneta più appetibile è:
+
+[o] Quella con il valore più alto
+[x] Quella con il valore più basso
+
+---
+
+L'algoritmo illustrato, per i valori:
+
+*Somma* = 28
+*Monete possibili* = 5, 4, 1
+
+[o] raggiunge una soluzione ottimale
+[x] raggiunge una soluzione non ottimale
+
+---
+
+Quali sono i vantaggi dell'approccio greedy?
+
+[o] Efficienza
+[o] Semplicità
+[x] Soluzione sempre ottimale

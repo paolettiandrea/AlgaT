@@ -1,14 +1,15 @@
-Il paradigma algoritmico greedy si basa su:
+Nel problema del commesso viaggiatore la soluzione ottimale è:
 
-[o] This is one possible answer (correct)
-[x] This is another one, the second.
-[x] This is a third
-[x] This is a fourth
-[x] This is a fifth
+[o] Quella la cui strada percorsa è minima
+[o] Quella in cui ogni città è stata visitata una e una sola volta
+[x] Quella la cui strada percorsa è massima
+[x] Qualle in cui il percorso del commesso non interseca se stesso
 
 ---
 
-This is another question
+Cosa si intende per sottostruttura ottima
 
 [o] sadsad
 [x] dffsdg sgdf
+
+

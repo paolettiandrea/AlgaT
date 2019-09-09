@@ -1,3 +1,16 @@
 #questionCounter {
     -fx-font-size: 42;
+    -fx-font-family: "Space Mono Bold";
+}
+
+.base-text {
+    -fx-font-family: "Space Mono";
+}
+
+.question-text {
+    -fx-font-size: 14;
+}
+
+.answer-text {
+    -fx-font-size: 13;
 }

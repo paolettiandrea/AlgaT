@@ -2,32 +2,31 @@ package algat.controller.content.questions;
 
 import algat.model.lesson.Question;
 import javafx.scene.Node;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import java.util.Collections;
 import java.util.Vector;
 
-public class SingleQuestionPanel extends QuestionPanel {
+public class MultipleQuestionPanel extends QuestionPanel {
 
     public BorderPane mainBorderPane;
     public VBox answersVBox;
 
-
-    private Vector<RadioButton> answerButtons;
+    private Vector<CheckBox> answerCheckBoxes;
 
 
     @Override
     public void populate(Question question) {
+
         this.question = question;
         Node questionText = question.getQuestion().assemble();
         questionText.getStyleClass().add("question-text");
         questionText.getStyleClass().add("base-text");
         mainBorderPane.setTop(questionText);
 
-        int totalAnswers = question.getIncorrectAnswers().size()+1;
+        int totalAnswers = question.getIncorrectAnswers().size()+question.getCorrectAnswers().size();
 
         indexes = new Vector<>();
         for (int i = 0; i < totalAnswers; i++) {
@@ -35,19 +34,17 @@ public class SingleQuestionPanel extends QuestionPanel {
         }
         Collections.shuffle(indexes);
 
-        ToggleGroup toggleGroup = new ToggleGroup();
-        answerButtons = new Vector<>();
+        answerCheckBoxes = new Vector<>();
         for (int i = 0; i < totalAnswers; i++) {
             BorderPane answerBorderPane = new BorderPane();
 
-            RadioButton radioButton = new RadioButton();
-            radioButton.setToggleGroup(toggleGroup);
-            answerButtons.add(radioButton);
+            CheckBox radioButton = new CheckBox();
+            answerCheckBoxes.add(radioButton);
             answerBorderPane.setLeft(radioButton);
 
             Node answer;
-            if (indexes.get(i)==totalAnswers-1) {
-                answer = question.getCorrectAnswers().getFirst().assemble();
+            if (indexes.get(i)>=question.getIncorrectAnswers().size()) {
+                answer = question.getCorrectAnswers().get(indexes.get(i)-question.getIncorrectAnswers().size()).assemble();
                 answerBorderPane.setCenter(answer);
             } else {
                 answer = question.getIncorrectAnswers().get(indexes.get(i)).assemble();
@@ -58,12 +55,11 @@ public class SingleQuestionPanel extends QuestionPanel {
 
             answersVBox.getChildren().add(answerBorderPane);
         }
+
     }
-
-
 
     @Override
     protected boolean isButtonSelected(int index) {
-        return answerButtons.get(index).isSelected();
+        return answerCheckBoxes.get(index).isSelected();
     }
 }

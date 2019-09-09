@@ -1,0 +1,26 @@
+#+options: h:2
+
+* AlgaT
+AlgaT è un progetto realizzato nell'ambito di un corso di Algoritmi e Strutture Dati da Andrea Paoletti (andrea.paoletti3@studio.unibo.it).
+
+** Descrizione
+E' una applicazione grafica standalone basata su JavaFx mirata ad illustrare concetti inerenti a tale corso tramite simulazioni interattive ed informazioni contestuali.
+L'applicazione è organizzata in argomenti e lezioni e per ogni lezione permette di cimentarsi in una serie di domande di autoapprendimento.
+
+** QuickStart
+Il progetto è stato sviluppato su Linux con il supporto di *Gradle*, l'unico prerequisito è la presenza di un JRE 11 o superiore.
+
+*** Esecuzione
+Si raccomanda l'esecuzione del progetto attraverso il Gradle Wrapper, che gestisce le dipendenze e si occupa di scaricare Gradle stesso se necessario.
+- *Linux/Mac*: ~./gradlew run~
+- *Windows*: ~gradlew run~
+
+*** Runtime Images
+Il Gradle Wrapper permette anche di generare runtime images per la piattaforma su cui viene eseguito
+con il comando ~./gradlew jlink~ o ~gradlew jlink~ a seconda della piattaforma.
+
+**** Known issues
+Si è riscontrato un bug nella creazione di immagini jlink su Linux con OpenJDK, viene generata un immagine di dimensioni eccessive (600+MB).
+Il file colpevole sembra essere ~image/lib/server/libjvm.so~, eseguendo uno ~strip~ su tale file la dimensione dell'immagine può essere ridotta notevolmente.
+
+

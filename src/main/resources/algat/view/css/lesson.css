@@ -28,7 +28,7 @@
 
 .block-title {
     -fx-font-family: "Space Mono Bold";
-    -fx-label-padding: 15 0 0 10;
+    -fx-label-padding: 15 0 0 15;
 }
 
 .ui-interactive-control {

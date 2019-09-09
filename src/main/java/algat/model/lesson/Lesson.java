@@ -21,7 +21,7 @@ public class Lesson {
     /**
      * The expected extension for the files that contain data representing a Lesson
      */
-    public static final String EXPECTED_FILE_EXTENSION = ".txt";
+    public static final String EXPECTED_FILE_EXTENSION = ".lesson";
     public static final String EXPECTED_QUESTIONS_EXTENSION = ".quiz";
 
     /**

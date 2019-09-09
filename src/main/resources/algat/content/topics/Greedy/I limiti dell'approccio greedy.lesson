@@ -1,0 +1,50 @@
+
+Forse sperimentando con il problema del resto ti sarai accorto che non sempre l'algoritmo illustrato raggiunge una soluzione ottimale.
+
+## Soluzione non ottimale al problema del resto
+
+Prendiamo per esempio lo stesso algoritmo applicato a questi valori:
+
+(problema del resto unoptimal)
+
+
+
+## Il commesso viaggiatore
+
+Tale limitazione dell'approccio greedy risulta ancora più evidente nella risoluzione del problema del commesso viaggiatore.
+
+Un commesso viaggiatore deve visitare una lista di città, in che ordine le deve visitare per minimizzare la strada
+percorsa, ma senza visitare la stessa città due volte?
+
+Qui è proposta l'implementazione greedy più semplice possibile, l'uomo inizialmente sceglie una città casualmente e
+per ogni passo si muove nella città più vicina che non ha ancora visitato.
+
+< interactive () [view/fxml/interactive/custom/travellingsalesman/TravellingSalesmanUnoptimalWrapper.fxml] >
+
+In tale algoritmo è intuitivo vedere come una scelta locale ottima possa precludere a valle scelte globalmente migliori.
+
+E' dunque chiaro che gli algoritmi greedy ^non sempre raggiungono una soluzione ottimale^.
+
+## Quando usare l'approccio greedy?
+
+Per dimostrare che un problema può essere risolto in maniera ottimale tramite un approccio greedy è necessario
+dimostrare che il problema possiede le seguenti caratteristiche.
+
+### Scelta greedy
+
+Una prima scelta greedy ottima riduce il problema a un sottoproblema più piccolo dello stesso tipo, dimostrando per induzione
+che il problema può essere ridotto a una sequenza di scelte *greedy* ottime.
+
+### Sottostruttura ottima
+
+La soluzione globale ottima del problema contiene al suo interno le soluzioni ottime dei suoi sottoproblemi.
+
+
+
+
+## Custom wrapper
+
+< interactive () [view/fxml/interactive/custom/travellingsalesman/TravellingSalesmanCustomWrapper.fxml] >
+
+
+

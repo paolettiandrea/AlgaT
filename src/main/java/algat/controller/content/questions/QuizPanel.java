@@ -70,12 +70,10 @@ public class QuizPanel {
         String resPath;
 
         if (question.getCorrectAnswers().size()>1) {
-            // TODO multiple question panel
             resPath = "/algat/view/fxml/content/questions/MultipleQuestionPanel.fxml";
         } else {
             resPath = "/algat/view/fxml/content/questions/SingleQuestionPanel.fxml";
         }
-
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resPath));
