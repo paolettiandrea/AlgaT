@@ -22,7 +22,6 @@ public class CustomGreedyCoin extends InteractiveContentController {
 
     public CustomGreedyCoin() {
         super(Duration.seconds(0.5),0.5,3);
-
     }
 
     @FXML
@@ -31,13 +30,19 @@ public class CustomGreedyCoin extends InteractiveContentController {
             mainPane.getChildren().remove(greedyCore);
         }
 
-        int amount = Integer.parseInt(amountTextField.getText());
-        List<Integer> posCoins = parsePossibleCoinList(possibleCoinListTextField.getText());
+        try {
+            int amount = Integer.parseInt(amountTextField.getText());
+            List<Integer> posCoins = parsePossibleCoinList(possibleCoinListTextField.getText());
 
-        greedyCore = new GreedyCoin(posCoins, amount);
-        mainPane.setCenter(greedyCore);
-        wrapperInterface.enableControlPanel();
-        reset();
+            greedyCore = new GreedyCoin(posCoins, amount);
+            mainPane.setCenter(greedyCore);
+            wrapperInterface.enableControlPanel();
+            reset();
+        } catch (NumberFormatException e) {
+            System.out.println("I valori inseriti non sono validi. Ammessi solo numeri interi e le monete possibili devono essere separate da virgole");
+        }
+
+
     }
 
     private List<Integer> parsePossibleCoinList(String possibleCoinsString) {

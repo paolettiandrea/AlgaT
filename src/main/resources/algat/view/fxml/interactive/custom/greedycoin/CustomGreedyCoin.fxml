@@ -9,10 +9,10 @@
       <VBox alignment="CENTER" maxWidth="300.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="amountTextField" promptText="Valore resto" styleClass="prompt-text" />
-            <TextField fx:id="possibleCoinListTextField" promptText="Monete possibili" styleClass="prompt-text" />
+            <TextField fx:id="possibleCoinListTextField" promptText="Monete possibili (separate da virgole)" styleClass="prompt-text" />
             <VBox alignment="BOTTOM_RIGHT">
                <children>
-                  <Button fx:id="buildButton" mnemonicParsing="false" onAction="#build" styleClass="prompt-text" text="Button" textAlignment="RIGHT" />
+                  <Button fx:id="buildButton" mnemonicParsing="false" onAction="#build" styleClass="prompt-text" text="Assembla" textAlignment="RIGHT" />
                </children>
             </VBox>
          </children>
