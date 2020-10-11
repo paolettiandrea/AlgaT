@@ -1,7 +1,7 @@
 #+options: h:2
 
 * AlgaT
-AlgaT è un progetto realizzato nell'ambito di un corso di Algoritmi e Strutture Dati da Andrea Paoletti (andrea.paoletti3@studio.unibo.it).
+AlgaT è un progetto realizzato nell'ambito di un corso di Algoritmi e Strutture Dati da Andrea Paoletti.
 
 ** Descrizione
 E' una applicazione grafica standalone basata su JavaFx mirata ad illustrare concetti inerenti a tale corso tramite simulazioni interattive ed informazioni contestuali.
